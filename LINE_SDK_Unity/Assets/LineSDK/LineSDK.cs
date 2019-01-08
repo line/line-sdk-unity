@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace LineSDK {
+namespace Line.LineSDK {
     public class Manager {
     }
 }
