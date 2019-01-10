@@ -10,8 +10,8 @@ using Line.LineSDK;
 public class FlattenActionTest {
 
     [Serializable]
-    class Foo {
-        public string userId;        
+    public class Foo {
+        public string userId;
     }
 
 	[Test]
