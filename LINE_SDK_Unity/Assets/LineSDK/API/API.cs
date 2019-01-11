@@ -9,6 +9,26 @@ namespace Line.LineSDK {
             var identifier = AddAction(FlattenAction.JsonFlatten<AccessToken>(action));
             NativeInterface.RefreshAccessToken(identifier);
         }
+
+        public static void RevokeAccessToken(Action<Result<Unit>> action) {
+            var identifier = AddAction(FlattenAction.UnitFlatten(action));
+            NativeInterface.RevokeAccessToken(identifier);
+        }
+
+        public static void VerifyAccessToken(Action<Result<AccessTokenVerifyResult>> action) {
+            var identifier = AddAction(FlattenAction.JsonFlatten<AccessTokenVerifyResult>(action));
+            NativeInterface.VerifyAccessToken(identifier);
+        }
+
+        public static void GetProfile(Action<Result<UserProfile>> action) {
+            var identifier = AddAction(FlattenAction.JsonFlatten<UserProfile>(action));
+            NativeInterface.GetProfile(identifier);
+        }
+
+        public static void GetBotFriendshipStatus(Action<Result<BotFriendshipStatus>> action) {
+            var identifier = AddAction(FlattenAction.JsonFlatten<BotFriendshipStatus>(action));
+            NativeInterface.GetBotFriendshipStatus(identifier);
+        }
     }
 
     partial class API {

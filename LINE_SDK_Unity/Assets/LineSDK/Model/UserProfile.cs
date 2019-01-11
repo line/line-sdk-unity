@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Line.LineSDK {
     [Serializable]
     public class UserProfile {
-        public string userId;
-        public string displayName;
-        public string pictureUrl;
-        public string statusMessage;
+        [SerializeField]
+        private string userId;
+        [SerializeField]
+        private string displayName;
+        [SerializeField]
+        private string pictureUrl;
+        [SerializeField]
+        private string statusMessage;
+
+        public string UserId { get { return userId; } }
+        public string DisplayName { get { return displayName; } }
+        public string StatusMessage { get { return statusMessage; } }
 
         public Uri PictureUrl {
             get {

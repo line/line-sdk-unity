@@ -27,6 +27,20 @@ namespace Line.LineSDK {
             return flattenAction;
         }
 
+        static internal FlattenAction UnitFlatten(Action<Result<Unit>> action) {
+                var flattenAction = new FlattenAction(
+                value => {
+                    var result = Result<Unit>.Ok(Unit.Value);
+                    action.Invoke(result);
+                },
+                error => {
+                    var result = Result<Unit>.Error(JsonUtility.FromJson<Error>(error));
+                    action.Invoke(result);
+                }
+            );
+            return flattenAction;
+        }
+
         internal void CallOk(string s) {
             successAction.Invoke(s);
         }
