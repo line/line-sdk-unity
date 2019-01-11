@@ -5,14 +5,14 @@ using System.Collections.Generic;
 namespace Line.LineSDK {
     public partial class API {
 
-        public static void RefreshAccessToken(Action<Result<UserProfile>> action) {
-            var identifier = AddAction(FlattenAction.JsonFlatten<UserProfile>(action));
+        public static void RefreshAccessToken(Action<Result<AccessToken>> action) {
+            var identifier = AddAction(FlattenAction.JsonFlatten<AccessToken>(action));
             NativeInterface.RefreshAccessToken(identifier);
         }
     }
 
     partial class API {
-        static Dictionary<String, FlattenAction> actions;
+        internal static Dictionary<String, FlattenAction> actions = new Dictionary<string, FlattenAction>();
         static string AddAction(FlattenAction action) {
             var identifier = Guid.NewGuid().ToString();
             actions.Add(identifier, action);
@@ -20,7 +20,7 @@ namespace Line.LineSDK {
         }
 
         static FlattenAction PopActionFromPayload(CallbackPayload payload) {
-            var identifier = payload.identifier;
+            var identifier = payload.Identifier;
             if (identifier == null) {
                 return null;
             }
@@ -36,7 +36,7 @@ namespace Line.LineSDK {
             var payload = CallbackPayload.FromJson(result);
             var action = PopActionFromPayload(payload);
             if (action != null) {
-                action.CallOk(payload.value);
+                action.CallOk(payload.Value);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Line.LineSDK {
             var payload = CallbackPayload.FromJson(result);
             var action = PopActionFromPayload(payload);
             if (action != null) {
-                action.CallError(payload.value);
+                action.CallError(payload.Value);
             }
         }
     }

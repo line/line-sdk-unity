@@ -33,8 +33,8 @@ public class FlattenActionTest {
 		var action = FlattenAction.JsonFlatten<Foo>(result => {
             result.MatchError(value => {
                 called = true;
-                Assert.AreEqual(value.code, 123);
-                Assert.AreEqual(value.message, "test");
+                Assert.AreEqual(value.Code, 123);
+                Assert.AreEqual(value.Message, "test");
             });
         });
         action.CallError(@"{""code"": 123, ""message"":""test""}");

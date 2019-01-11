@@ -29,8 +29,7 @@ public class ResultTest {
 
     [Test]
     public void ResultTestCreateWithError() {
-        var error = new Error();
-        error.code = 100;
+        var error = new Error(100, "error");
         var result = Result<int>.Error(error);
         Assert.IsTrue(result.IsFailure);
         var okCalled = false;
@@ -41,7 +40,7 @@ public class ResultTest {
             },
             e => {
                 errorCalled = true;
-                Assert.AreEqual(e.code, 100);
+                Assert.AreEqual(e.Code, 100);
             }
         );
         Assert.False(okCalled);
