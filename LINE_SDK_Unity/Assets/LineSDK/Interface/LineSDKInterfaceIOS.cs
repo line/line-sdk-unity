@@ -32,6 +32,15 @@ namespace Line.LineSDK {
         }
 
         [DllImport("__Internal")]
+        private static extern void line_sdk_logout(string identifier);
+        internal static void Logout(string identifier) {
+            if (Application.platform != RuntimePlatform.IPhonePlayer) {
+                return;
+            }
+            line_sdk_logout(identifier);
+        }
+
+        [DllImport("__Internal")]
         private static extern void line_sdk_refreshAccessToken(string identifier);
         internal static void RefreshAccessToken(string identifier) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
@@ -75,6 +84,16 @@ namespace Line.LineSDK {
             }
             line_sdk_getBotFriendshipStatus(identifier);
         }
+
+        [DllImport("__Internal")]
+        private static extern string line_sdk_getCurrentAccessToken();
+        internal static string GetCurrentAccessToken() {
+            if (Application.platform != RuntimePlatform.IPhonePlayer) {
+                return null;
+            }
+            return line_sdk_getCurrentAccessToken();
+        }
+
     }
 }
 

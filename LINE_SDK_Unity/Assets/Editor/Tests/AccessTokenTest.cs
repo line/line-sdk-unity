@@ -29,6 +29,26 @@ public class AccessTokenTest {
         Assert.AreEqual(accessToken.RefreshToken, "abc321");
         Assert.AreEqual(accessToken.Scope, "profile openid");
         Assert.AreEqual(accessToken.TokenType, "Bearer");
-
 	}
+
+    [Test]
+    public void AccessTokenTestParseInvalid() {
+        string json1 = null;
+        var a1 = JsonUtility.FromJson<AccessToken>(json1);
+        Assert.Null(a1);
+
+        var json2 = "";
+        var a2 = JsonUtility.FromJson<AccessToken>(json2);
+        Assert.Null(a2);
+
+        var json3 = "abc";
+        Assert.Throws<ArgumentException>(() => { 
+            JsonUtility.FromJson<AccessToken>(json3);
+        });
+
+        var json4 = "{}";
+        var a4 = JsonUtility.FromJson<AccessToken>(json4);
+        Assert.NotNull(a4);
+        Assert.Null(a4.Value);
+    }
 }

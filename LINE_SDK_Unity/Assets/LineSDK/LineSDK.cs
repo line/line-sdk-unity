@@ -44,6 +44,18 @@ namespace Line.LineSDK {
             API.Login(scopes, option, action);
         }
 
+        public void Logout(Action<Result<Unit>> action) {
+            API.Logout(action);
+        }
+
+        public AccessToken CurrentAccessToken {
+            get {
+                var result = NativeInterface.GetCurrentAccessToken();
+                if (string.IsNullOrEmpty(result)) { return null; }
+                return JsonUtility.FromJson<AccessToken>(result);
+            }
+        }
+
         public void OnApiOk(string result) {
             API._OnApiOk(result);
         }

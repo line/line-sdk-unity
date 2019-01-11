@@ -46,6 +46,11 @@ namespace Line.LineSDK {
             }
             NativeInterface.Login(string.Join(" ", scopes.ToArray()), onlyWebLogin, botPrompt, identifier);
         }
+
+        internal static void Logout(Action<Result<Unit>> action) {
+            var identifier = AddAction(FlattenAction.UnitFlatten(action));
+            NativeInterface.Logout(identifier);
+        }
     }
 
     partial class API {
