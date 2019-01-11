@@ -7,7 +7,7 @@ using AOT;
 using System.Reflection;
 
 namespace Line.LineSDK {
-    public class NativeInterface {
+    internal class NativeInterface {
         static NativeInterface() {
             // Ensure the LineSDK instance existing.
             var _ = LineSDK.Instance;
@@ -15,7 +15,7 @@ namespace Line.LineSDK {
 
         [DllImport("__Internal")]
         private static extern void line_sdk_setup(string channelId, string universalLinkURL);
-        public static void SetupSDK(string channelId, string universalLinkURL) {
+        internal static void SetupSDK(string channelId, string universalLinkURL) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
                 return;
             }
@@ -23,8 +23,17 @@ namespace Line.LineSDK {
         }
 
         [DllImport("__Internal")]
+        private static extern void line_sdk_login(string scope, bool onlyWebLogin, string botPrompt, string identifier);
+        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier) {
+            if (Application.platform != RuntimePlatform.IPhonePlayer) {
+                return;
+            }
+            line_sdk_login(scope, onlyWebLogin, botPrompt, identifier);
+        }
+
+        [DllImport("__Internal")]
         private static extern void line_sdk_refreshAccessToken(string identifier);
-        public static void RefreshAccessToken(string identifier) {
+        internal static void RefreshAccessToken(string identifier) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
                 return;
             }
@@ -33,7 +42,7 @@ namespace Line.LineSDK {
 
         [DllImport("__Internal")]
         private static extern void line_sdk_revokeAccessToken(string identifier);
-        public static void RevokeAccessToken(string identifier) {
+        internal static void RevokeAccessToken(string identifier) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
                 return;
             }
@@ -42,7 +51,7 @@ namespace Line.LineSDK {
 
         [DllImport("__Internal")]
         private static extern void line_sdk_verifyAccessToken(string identifier);
-        public static void VerifyAccessToken(string identifier) {
+        internal static void VerifyAccessToken(string identifier) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
                 return;
             }
@@ -51,7 +60,7 @@ namespace Line.LineSDK {
 
         [DllImport("__Internal")]
         private static extern void line_sdk_getProfile(string identifier);
-        public static void GetProfile(string identifier) {
+        internal static void GetProfile(string identifier) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
                 return;
             }
@@ -60,7 +69,7 @@ namespace Line.LineSDK {
 
         [DllImport("__Internal")]
         private static extern void line_sdk_getBotFriendshipStatus(string identifier);
-        public static void GetBotFriendshipStatus(string identifier) {
+        internal static void GetBotFriendshipStatus(string identifier) {
             if (Application.platform != RuntimePlatform.IPhonePlayer) {
                 return;
             }

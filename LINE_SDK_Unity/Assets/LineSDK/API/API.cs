@@ -32,6 +32,23 @@ namespace Line.LineSDK {
     }
 
     partial class API {
+        internal static void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
+            var identifier = AddAction(FlattenAction.JsonFlatten<LoginResult>(action));
+            if (scopes == null || scopes.Count == 0) {
+                scopes = new List<string> {"profile"};
+            }
+            
+            var onlyWebLogin = false;
+            string botPrompt = null;
+            if (option != null) {
+                onlyWebLogin = option.OnlyWebLogin;
+                botPrompt = option.BotPrompt;
+            }
+            NativeInterface.Login(string.Join(" ", scopes.ToArray()), onlyWebLogin, botPrompt, identifier);
+        }
+    }
+
+    partial class API {
         internal static Dictionary<String, FlattenAction> actions = new Dictionary<string, FlattenAction>();
         static string AddAction(FlattenAction action) {
             var identifier = Guid.NewGuid().ToString();

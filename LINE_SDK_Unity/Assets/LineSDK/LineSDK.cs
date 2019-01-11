@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Line.LineSDK {
     public class LineSDK: MonoBehaviour {
@@ -32,6 +34,14 @@ namespace Line.LineSDK {
                 throw new System.Exception("LINE SDK channel ID is not set.");
             }
             NativeInterface.SetupSDK(channelID, universalLinkURL);
+        }
+
+        public void Login(List<string> scopes, Action<Result<LoginResult>> action) {
+            Login(scopes, null, action);
+        }
+
+        public void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
+            API.Login(scopes, option, action);
         }
 
         public void OnApiOk(string result) {
