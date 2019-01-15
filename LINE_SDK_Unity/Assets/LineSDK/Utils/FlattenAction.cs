@@ -29,7 +29,7 @@ namespace Line.LineSDK {
 
         static internal FlattenAction UnitFlatten(Action<Result<Unit>> action) {
                 var flattenAction = new FlattenAction(
-                value => {
+                _ => {
                     var result = Result<Unit>.Ok(Unit.Value);
                     action.Invoke(result);
                 },
