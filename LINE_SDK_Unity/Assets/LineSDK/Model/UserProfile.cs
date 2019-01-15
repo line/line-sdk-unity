@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace Line.LineSDK {
     [Serializable]
@@ -18,24 +19,24 @@ namespace Line.LineSDK {
         public string DisplayName { get { return displayName; } }
         public string StatusMessage { get { return statusMessage; } }
 
-        public Uri PictureUrl {
+        public string PictureUrl {
             get {
                 if (pictureUrl == null) { return null; }
-                return new Uri(pictureUrl);
+                return pictureUrl;
             }
         }
 
-        public Uri PictureUrlLarge {
+        public string PictureUrlLarge {
             get {
                 if (pictureUrl == null) { return null; }
-                return new Uri(PictureUrl, "/large");
+                return Path.Combine(pictureUrl, "large");
             }
         }
 
-        public Uri PictureUrlSmall {
+        public string PictureUrlSmall {
             get {
                 if (pictureUrl == null) { return null; }
-                return new Uri(PictureUrl, "/small");
+                return Path.Combine(pictureUrl, "small");
             }
         }
     }

@@ -25,7 +25,7 @@ public class LoginResultTest {
             ""userProfile"": {
                 ""displayName"": ""testuser"",
                 ""userId"": ""user_id"",
-                ""pictureUrl"": ""https://example.com/image.jpg"",
+                ""pictureUrl"": ""https://example.com/abcd"",
                 ""statusMessage"": ""Hi""
             },
             ""friendshipStatusChanged"": true

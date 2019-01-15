@@ -8,7 +8,7 @@ using System.Linq;
 
 using Line.LineSDK;
 
-public class APITokenTest {
+public class APITest {
 	[Test]
 	public void APITestRefreshTokenOk() {
         var json = @"
@@ -22,7 +22,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.RefreshAccessToken(result => {
+        LineAPI.RefreshAccessToken(result => {
             Assert.True(result.IsSuccess);
             result.MatchOk(token => {
                 called = true;
@@ -35,10 +35,10 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiOk(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-        Assert.IsEmpty(API.actions);
+        Assert.IsEmpty(LineAPI.actions);
 	}
 
     [Test]
@@ -50,7 +50,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.RefreshAccessToken(result => {
+        LineAPI.RefreshAccessToken(result => {
             Assert.True(result.IsFailure);
             result.MatchError(error => {
                 called = true;
@@ -59,23 +59,23 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiError(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-        Assert.IsEmpty(API.actions);
+        Assert.IsEmpty(LineAPI.actions);
 	}
 
 	[Test]
 	public void APITestRevokeTokenOk() {
         var json = "{}";
         var called = false;
-        API.RevokeAccessToken(result => {
+        LineAPI.RevokeAccessToken(result => {
             called = true;
             Assert.True(result.IsSuccess);
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiOk(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
 	}
 
@@ -88,7 +88,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.RevokeAccessToken(result => {
+        LineAPI.RevokeAccessToken(result => {
             Assert.True(result.IsFailure);
             result.MatchError(error => {
                 called = true;
@@ -97,8 +97,8 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiError(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
 	}
 
@@ -112,7 +112,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.VerifyAccessToken(result => {
+        LineAPI.VerifyAccessToken(result => {
             Assert.True(result.IsSuccess);
             result.MatchOk(value => {
                 called = true;
@@ -122,10 +122,10 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiOk(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-        Assert.IsEmpty(API.actions);
+        Assert.IsEmpty(LineAPI.actions);
 	}
 
     [Test]
@@ -137,7 +137,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.RefreshAccessToken(result => {
+        LineAPI.RefreshAccessToken(result => {
             Assert.True(result.IsFailure);
             result.MatchError(error => {
                 called = true;
@@ -146,8 +146,8 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiError(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
 	}
 
@@ -157,26 +157,28 @@ public class APITokenTest {
         {
             ""displayName"": ""testuser"",
             ""userId"": ""user_id"",
-            ""pictureUrl"": ""https://example.com/image.jpg"",
+            ""pictureUrl"": ""https://example.com/abcd"",
             ""statusMessage"": ""Hi""
         }
         ";
         var called = false;
-        API.GetProfile(result => {
+        LineAPI.GetProfile(result => {
             Assert.True(result.IsSuccess);
             result.MatchOk(profile => {
                 called = true;
                 Assert.AreEqual("user_id", profile.UserId);
                 Assert.AreEqual("testuser", profile.DisplayName);
                 Assert.AreEqual("Hi", profile.StatusMessage);
-                Assert.AreEqual("https://example.com/image.jpg", profile.PictureUrl.AbsoluteUri);
+                Assert.AreEqual("https://example.com/abcd", profile.PictureUrl);
+                Assert.AreEqual("https://example.com/abcd/large", profile.PictureUrlLarge);
+                Assert.AreEqual("https://example.com/abcd/small", profile.PictureUrlSmall);
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiOk(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-        Assert.IsEmpty(API.actions);
+        Assert.IsEmpty(LineAPI.actions);
 	}
 
     [Test]
@@ -188,7 +190,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.RefreshAccessToken(result => {
+        LineAPI.RefreshAccessToken(result => {
             called = true;
             Assert.True(result.IsFailure);
             result.MatchError(error => {
@@ -197,8 +199,8 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiError(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
 	}
 
@@ -210,7 +212,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.GetBotFriendshipStatus(result => {
+        LineAPI.GetBotFriendshipStatus(result => {
             Assert.True(result.IsSuccess);
             result.MatchOk(value => {
                 called = true;
@@ -218,10 +220,10 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiOk(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-        Assert.IsEmpty(API.actions);
+        Assert.IsEmpty(LineAPI.actions);
 	}
 
     [Test]
@@ -233,7 +235,7 @@ public class APITokenTest {
         }
         ";
         var called = false;
-        API.GetBotFriendshipStatus(result => {
+        LineAPI.GetBotFriendshipStatus(result => {
             called = true;
             Assert.True(result.IsFailure);
             result.MatchError(error => {
@@ -242,8 +244,8 @@ public class APITokenTest {
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiError(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
 	}
 }

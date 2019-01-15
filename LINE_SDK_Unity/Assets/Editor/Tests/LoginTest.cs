@@ -26,7 +26,7 @@ public class LoginTest {
             ""userProfile"": {
                 ""displayName"": ""testuser"",
                 ""userId"": ""user_id"",
-                ""pictureUrl"": ""https://example.com/image.jpg"",
+                ""pictureUrl"": ""https://example.com/abcd"",
                 ""statusMessage"": ""Hi""
             },
             ""friendshipStatusChanged"": true
@@ -34,17 +34,17 @@ public class LoginTest {
         ";
         var called = false;
         
-        API.Login(new List<string>{"profile"}, null, result => {
+        LineAPI.Login(new List<string>{"profile"}, null, result => {
             result.MatchOk(value => {
                 called = true;
                 Assert.AreEqual("abc123", value.AccessToken.Value);
             });
         });
 
-        var identifier = API.actions.Keys.ToList()[0];
-        API._OnApiOk(CallbackPayload.WrapValue(identifier, json));
+        var identifier = LineAPI.actions.Keys.ToList()[0];
+        LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-        Assert.IsEmpty(API.actions);
+        Assert.IsEmpty(LineAPI.actions);
 	}
 
     

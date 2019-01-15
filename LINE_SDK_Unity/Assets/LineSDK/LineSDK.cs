@@ -41,11 +41,11 @@ namespace Line.LineSDK {
         }
 
         public void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
-            API.Login(scopes, option, action);
+            LineAPI.Login(scopes, option, action);
         }
 
         public void Logout(Action<Result<Unit>> action) {
-            API.Logout(action);
+            LineAPI.Logout(action);
         }
 
         public AccessToken CurrentAccessToken {
@@ -57,11 +57,11 @@ namespace Line.LineSDK {
         }
 
         public void OnApiOk(string result) {
-            API._OnApiOk(result);
+            LineAPI._OnApiOk(result);
         }
 
         public void OnApiError(string result) {
-            API._OnApiError(result);
+            LineAPI._OnApiError(result);
         }
     }
 }

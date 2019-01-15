@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Line.LineSDK {
-    public partial class API {
+    public partial class LineAPI {
 
         public static void RefreshAccessToken(Action<Result<AccessToken>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<AccessToken>(action));
@@ -31,7 +31,7 @@ namespace Line.LineSDK {
         }
     }
 
-    partial class API {
+    partial class LineAPI {
         internal static void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<LoginResult>(action));
             if (scopes == null || scopes.Count == 0) {
@@ -53,7 +53,7 @@ namespace Line.LineSDK {
         }
     }
 
-    partial class API {
+    partial class LineAPI {
         internal static Dictionary<String, FlattenAction> actions = new Dictionary<string, FlattenAction>();
         static string AddAction(FlattenAction action) {
             var identifier = Guid.NewGuid().ToString();
