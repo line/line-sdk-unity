@@ -1,0 +1,4 @@
+target 'Unity-iPhone' do
+    use_frameworks!
+    pod 'LineSDKSwift/ObjC', :git => 'https://github.com/line/line-sdk-ios-swift.git', :branch => 'feature/connivence-methods'
+end

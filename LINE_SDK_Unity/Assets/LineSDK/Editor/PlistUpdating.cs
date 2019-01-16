@@ -7,19 +7,20 @@ using System.IO;
 public class PlistUpdating {
     [PostProcessBuildAttribute(1)]
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
-        if (target == BuildTarget.iOS) {
-
-            string plistPath = pathToBuiltProject + "/Info.plist";
-            PlistDocument plist = new PlistDocument();
-            plist.ReadFromString(File.ReadAllText(plistPath));
-       
-            PlistElementDict rootDict = plist.root;
-
-            SetupURLScheme(rootDict);
-            SetupQueriesSchemes(rootDict);
-
-            File.WriteAllText(plistPath, plist.WriteToString());
+        if (target != BuildTarget.iOS) {
+            return;
         }
+
+        string plistPath = pathToBuiltProject + "/Info.plist";
+        PlistDocument plist = new PlistDocument();
+        plist.ReadFromString(File.ReadAllText(plistPath));
+    
+        PlistElementDict rootDict = plist.root;
+
+        SetupURLScheme(rootDict);
+        SetupQueriesSchemes(rootDict);
+
+        File.WriteAllText(plistPath, plist.WriteToString());
     }
 
     static void SetupURLScheme(PlistElementDict rootDict) {
