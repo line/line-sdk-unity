@@ -45,6 +45,45 @@ public class MainController : MonoBehaviour {
         UpdateRawSection(currentToken);
     }
 
+    public void VerifyToken() {
+        LineAPI.VerifyAccessToken(result => {
+            result.Match(
+                value => {
+                    UpdateRawSection(value);
+                },
+                error => {
+                    UpdateRawSection(error);
+                }
+            );
+        });
+    }
+
+    public void RefreshToken() {
+        LineAPI.RefreshAccessToken(result => {
+            result.Match(
+                value => {
+                    UpdateRawSection(value);
+                },
+                error => {
+                    UpdateRawSection(error);
+                }
+            );
+        });
+    }
+
+    public void GetFriendshipStatus() {
+        LineAPI.GetBotFriendshipStatus(result => {
+            result.Match(
+                value => {
+                    UpdateRawSection(value);
+                },
+                error => {
+                    UpdateRawSection(error);
+                }
+            );
+        });
+    }
+
     public void Logout() {
         LineSDK.Instance.Logout(result => {
             result.Match(
