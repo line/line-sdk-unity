@@ -7,7 +7,6 @@ using System.IO;
 public class PlistUpdating {
     [PostProcessBuildAttribute(1)]
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
-        Debug.Log(pathToBuiltProject);
         if (target == BuildTarget.iOS) {
 
             string plistPath = pathToBuiltProject + "/Info.plist";

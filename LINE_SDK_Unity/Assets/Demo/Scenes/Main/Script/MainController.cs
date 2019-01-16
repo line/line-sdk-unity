@@ -61,7 +61,7 @@ public class MainController : MonoBehaviour {
     IEnumerator UpdateProfile(UserProfile profile) {
         if (profile.PictureUrl != null) {
             var www = UnityWebRequestTexture.GetTexture(profile.PictureUrl);
-            yield return www.Send();
+            yield return www.SendWebRequest();
             if (www.isNetworkError || www.isHttpError) {
                 Debug.LogError(www.error);
             } else {
