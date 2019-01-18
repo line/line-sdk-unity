@@ -1,3 +1,4 @@
+#if UNITY_IOS
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -22,3 +23,4 @@ namespace Line.LineSDK.Editor {
         }
     }
 }
+#endif
