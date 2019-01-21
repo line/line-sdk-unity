@@ -5,7 +5,7 @@ namespace Line.LineSDK
 {
     internal class NativeInterface
     {
-        static AndroidJavaObject lineSdkWrapper = new AndroidJavaObject("linesdk.linecorp.com.sdknativemodule.LineSdkWrapper");
+        static AndroidJavaObject lineSdkWrapper = new AndroidJavaObject("com.linecorp.linesdk.unitywrapper.LineSdkWrapper");
 
         static NativeInterface()
         {
