@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
-namespace Line.LineSDK {
+
+namespace Line.LineSDK.Editor {
     class Cartfile {
 
         internal class Item {

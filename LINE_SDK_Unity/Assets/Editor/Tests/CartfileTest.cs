@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.IO;
 
-using Line.LineSDK;
+using Line.LineSDK.Editor;
 
 public class CartfileTest {
 

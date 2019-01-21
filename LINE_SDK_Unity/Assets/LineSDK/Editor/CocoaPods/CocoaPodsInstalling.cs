@@ -6,11 +6,15 @@ using System.IO;
 using System.Diagnostics;
 using System;
 
-namespace Line.LineSDK {
+namespace Line.LineSDK.Editor {
     public class CocoaPodsInstalling {
-        // [PostProcessBuildAttribute(2)]
+        [PostProcessBuildAttribute(3)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
             if (target != BuildTarget.iOS) {
+                return;
+            }
+
+            if (!LineSDKSettings.GetOrCreateSettings().UseCocoaPods) {
                 return;
             }
         

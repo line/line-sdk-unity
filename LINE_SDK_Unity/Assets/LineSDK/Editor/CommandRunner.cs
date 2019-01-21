@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System;
 using System.IO;
 
-namespace Line.LineSDK {
+namespace Line.LineSDK.Editor {
     internal class ShellCommand {
         static string AppendingHome(string path) {
             var homePath = System.Environment.GetEnvironmentVariable("HOME");
@@ -34,9 +34,11 @@ namespace Line.LineSDK {
             psi.RedirectStandardError = true;
             Process p = Process.Start(psi); 
             string output = p.StandardOutput.ReadToEnd();
+            string error = p.StandardError.ReadToEnd();
             p.WaitForExit();
-            UnityEngine.Debug.Log(output);
-            UnityEngine.Debug.Log(p.StandardError.ReadToEnd());
+            if (!string.IsNullOrEmpty(error)) {
+                UnityEngine.Debug.LogError(error);
+            }
             p.Close();
             return output;
         }

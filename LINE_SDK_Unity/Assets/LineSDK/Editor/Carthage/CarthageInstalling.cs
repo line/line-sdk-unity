@@ -4,7 +4,7 @@ using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 using System.IO;
 
-namespace Line.LineSDK {
+namespace Line.LineSDK.Editor {
     public class CarthageInstalling {
 
         static string projectRoot;
@@ -12,6 +12,10 @@ namespace Line.LineSDK {
         [PostProcessBuildAttribute(2)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
             if (target != BuildTarget.iOS) {
+                return;
+            }
+
+            if (!LineSDKSettings.GetOrCreateSettings().UseCarthage) {
                 return;
             }
 
@@ -95,7 +99,6 @@ namespace Line.LineSDK {
             File.Copy(installScript, Path.Combine(projectRoot, "copy_carthage_framework.rb"), true);
 
             Directory.SetCurrentDirectory(projectRoot);
-            Debug.Log("Gem path: " + ShellCommand.Run("which", "gem"));
             ShellCommand.Run("gem", "install bundler --no-ri --no-rdoc");
             ShellCommand.Run("bundle", "install --path vendor/bundle");
             ShellCommand.Run("bundle", "exec ruby copy_carthage_framework.rb");

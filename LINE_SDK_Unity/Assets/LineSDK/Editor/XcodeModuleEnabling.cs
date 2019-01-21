@@ -4,7 +4,7 @@ using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 using System.IO;
 
-namespace Line.LineSDK {
+namespace Line.LineSDK.Editor {
     public class XcodeBuildConfigUpdating {
         [PostProcessBuildAttribute(3)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
