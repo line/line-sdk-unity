@@ -44,21 +44,21 @@ namespace Line.LineSDK.Editor {
         static SerializedObject settings;
 
         #if UNITY_2018_3_OR_NEWER
-        private class MyPrefSettingsProvider : SettingsProvider {
-            public MyPrefSettingsProvider(string path, SettingsScopes scopes = SettingsScopes.Any): base(path, scopes) { }
+        private class Provider : SettingsProvider {
+            public Provider(string path, SettingsScope scope = SettingsScope.User): base(path, scope) {}
             public override void OnGUI(string searchContext) {
-                MyOldPrefCode();
+                DrawPref();
             }
         }
         [SettingsProvider]
         static SettingsProvider MyNewPrefCode() {
-            return new MyPrefSettingsProvider("Preferences/LINE SDK");
+            return new Provider("Preferences/LINE SDK");
         }
         
         #else
         [PreferenceItem("LINE SDK")]
         #endif
-        static void MyOldPrefCode() {
+        static void DrawPref() {
             if (settings == null) {
                 settings = LineSDKSettings.GetSerializedSettings();
             }
