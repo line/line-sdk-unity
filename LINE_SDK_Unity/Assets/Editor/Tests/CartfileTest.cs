@@ -46,6 +46,11 @@ public class CartfileTest {
         Assert.False(result);
 
         item = new Cartfile.Item(text);
+        result = item.UpdateOrAddEntry("github", "\"line/line-sdk-ios-swift\"", "~> 5.1");
+        Assert.True(result);
+        Assert.False(item.dirty);
+
+        item = new Cartfile.Item(text);
         result = item.UpdateOrAddEntry("github", "\"line/line-sdk-ios-swift\"", "~> 5.2");
         Assert.True(result);
 

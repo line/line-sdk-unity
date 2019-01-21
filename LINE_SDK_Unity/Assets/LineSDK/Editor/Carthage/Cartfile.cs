@@ -31,6 +31,7 @@ namespace Line.LineSDK {
                 this.dirty = true;
             }
 
+            // Return `true` if the target entry was found and updated. Otherwise, `false`.
             internal bool UpdateOrAddEntry(string source, string content, string version) {
                 if (source == this.source && content == this.content) {
                     if (version != this.version) {
@@ -88,7 +89,7 @@ namespace Line.LineSDK {
 
         Cartfile() { }
 
-        void Write() {
+        internal void Save() {
             File.WriteAllText(path, Output);
         }
 
