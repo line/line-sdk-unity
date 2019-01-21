@@ -185,7 +185,7 @@
 }
 
 - (NSString *)wrapError:(NSError *)error {
-    NSDictionary *dic = @{@"error": @(error.code), @"message": error.localizedDescription};
+    NSDictionary *dic = @{@"code": @(error.code), @"message": error.localizedDescription};
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:kNilOptions error:nil];
     if (!data) { return nil; }
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
