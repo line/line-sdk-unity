@@ -21,6 +21,7 @@ namespace Line.LineSDK
             lineSdkWrapper.Call("setupSdk", parameters);
 
         }
+
         internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier)
         {
             object[] parameters = new object[4];
@@ -34,26 +35,36 @@ namespace Line.LineSDK
 
         internal static void Logout(string identifier)
         {
-            object[] parameters = new object[1];
-            parameters[0] = identifier;
-
-            lineSdkWrapper.Call("logout", parameters);
+            CallLineSdkWrapperWithIdentifier("logout", identifier);
         }
 
-        internal static void RefreshAccessToken(string identifier) { }
-        internal static void RevokeAccessToken(string identifier) { }
-        internal static void VerifyAccessToken(string identifier) { }
-        internal static void GetProfile(string identifier)
-        {
-            object[] parameters = new object[1];
-            parameters[0] = identifier;
-            lineSdkWrapper.Call("getProfile", parameters);
+        internal static void RefreshAccessToken(string identifier) { 
+            CallLineSdkWrapperWithIdentifier("refreshAccessToken", identifier);
         }
 
-        internal static void GetBotFriendshipStatus(string identifier) { }
+        internal static void RevokeAccessToken(string identifier) {}
+
+        internal static void VerifyAccessToken(string identifier) {
+            CallLineSdkWrapperWithIdentifier("verifyAccessToken", identifier);
+        }
+
+        internal static void GetProfile(string identifier) {
+            CallLineSdkWrapperWithIdentifier("getProfile", identifier);
+        }
+
+        internal static void GetBotFriendshipStatus(string identifier) {
+            CallLineSdkWrapperWithIdentifier("getBotFriendshipStatus", identifier);
+        }
+
         internal static string GetCurrentAccessToken()
         {
             return lineSdkWrapper.Call<string>("getCurrentAccessToken");
+        }
+
+        static void CallLineSdkWrapperWithIdentifier(string functionName, string identifier) {
+            object[] parameters = new object[1];
+            parameters[0] = identifier;
+            lineSdkWrapper.Call(functionName, parameters);
         }
     }
 }
