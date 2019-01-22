@@ -9,8 +9,8 @@ using Line.LineSDK;
 
 public class LoginResultTest {
 
-	[Test]
-	public void LoginResultTestParse() {
+    [Test]
+    public void LoginResultTestParse() {
         var json = @"
         {
             ""accessToken"": {
@@ -43,5 +43,5 @@ public class LoginResultTest {
         Assert.AreEqual("user_id", result.UserProfile.UserId);
 
         Assert.True(result.IsFriendshipStatusChanged);
-	}
+    }
 }

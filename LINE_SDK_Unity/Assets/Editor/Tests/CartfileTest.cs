@@ -9,14 +9,14 @@ using Line.LineSDK.Editor;
 
 public class CartfileTest {
 
-	[Test]
-	public void CartfileParsing() {
+    [Test]
+    public void CartfileParsing() {
         var p = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Editor/Tests/Fixture/SampleCartfile");
         var text = File.ReadAllText(p);
         var file = new Cartfile(text);
         Assert.AreEqual(file.items.Count, 35); 
         Assert.AreEqual(file.Output, text + "\n");
-	}
+    }
 
     [Test]
     public void CartfileItemParse() {

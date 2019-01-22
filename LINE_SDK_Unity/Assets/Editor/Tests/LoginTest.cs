@@ -10,8 +10,8 @@ using System.Collections.Generic;
 using Line.LineSDK;
 
 public class LoginTest {
-	[Test]
-	public void LoginTestOk() {
+    [Test]
+    public void LoginTestOk() {
         var json = @"
         {
             ""accessToken"": {
@@ -45,7 +45,7 @@ public class LoginTest {
         LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
         Assert.IsEmpty(LineAPI.actions);
-	}
+    }
 
     
 }

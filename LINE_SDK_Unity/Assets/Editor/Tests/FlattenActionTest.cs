@@ -14,10 +14,10 @@ public class FlattenActionTest {
         public string userId;
     }
 
-	[Test]
-	public void FlattenActionTestCallOk() {
+    [Test]
+    public void FlattenActionTestCallOk() {
         var called = false;
-		var action = FlattenAction.JsonFlatten<Foo>(result => {
+        var action = FlattenAction.JsonFlatten<Foo>(result => {
             result.MatchOk(value => {
                 called = true;
                 Assert.AreEqual(value.userId, "123");
@@ -25,12 +25,12 @@ public class FlattenActionTest {
         });
         action.CallOk(@"{""userId"": ""123""}");
         Assert.True(called);
-	}
+    }
 
     [Test]
-	public void FlattenActionTestCallError() {
+    public void FlattenActionTestCallError() {
         var called = false;
-		var action = FlattenAction.JsonFlatten<Foo>(result => {
+        var action = FlattenAction.JsonFlatten<Foo>(result => {
             result.MatchError(value => {
                 called = true;
                 Assert.AreEqual(value.Code, 123);
@@ -39,5 +39,5 @@ public class FlattenActionTest {
         });
         action.CallError(@"{""code"": 123, ""message"":""test""}");
         Assert.True(called);
-	}
+    }
 }

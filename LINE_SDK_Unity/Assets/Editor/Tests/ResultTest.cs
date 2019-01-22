@@ -8,9 +8,9 @@ using Line.LineSDK;
 
 public class ResultTest {
 
-	[Test]
-	public void ResultTestCreateWithValue() {
-		var result = Result<int>.Ok(1);
+    [Test]
+    public void ResultTestCreateWithValue() {
+        var result = Result<int>.Ok(1);
         Assert.IsTrue(result.IsSuccess);
         var okCalled = false;
         var errorCalled = false;
@@ -25,7 +25,7 @@ public class ResultTest {
         );
         Assert.True(okCalled);
         Assert.False(errorCalled);
-	}
+    }
 
     [Test]
     public void ResultTestCreateWithError() {

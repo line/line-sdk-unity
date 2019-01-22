@@ -9,8 +9,8 @@ using Line.LineSDK;
 
 public class AccessTokenTest {
 
-	[Test]
-	public void AccessTokenTestParse() {
+    [Test]
+    public void AccessTokenTestParse() {
         var json = @"
         {
             ""access_token"": ""abc123"",
@@ -29,7 +29,7 @@ public class AccessTokenTest {
         Assert.AreEqual(accessToken.RefreshToken, "abc321");
         Assert.AreEqual(accessToken.Scope, "profile openid");
         Assert.AreEqual(accessToken.TokenType, "Bearer");
-	}
+    }
 
     [Test]
     public void AccessTokenTestParseInvalid() {
