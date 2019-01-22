@@ -15,6 +15,9 @@ namespace Line.LineSDK
 
         internal static void SetupSDK(string channelId, string universalLinkURL)
         {
+            if (!Application.isPlaying) { return; }
+            if (IsInvalidRuntime(null)) { return; }
+
             object[] parameters = new object[1];
             parameters[0] = channelId;
 
@@ -24,6 +27,9 @@ namespace Line.LineSDK
 
         internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier)
         {
+            if (!Application.isPlaying) { return; }
+            if (IsInvalidRuntime(null)) { return; }
+
             object[] parameters = new object[4];
             parameters[0] = identifier;
             parameters[1] = scope;
@@ -58,13 +64,30 @@ namespace Line.LineSDK
 
         internal static string GetCurrentAccessToken()
         {
+            if (!Application.isPlaying) { return null; }
+            if (IsInvalidRuntime(null)) { return null; }
+
             return lineSdkWrapper.Call<string>("getCurrentAccessToken");
         }
 
-        static void CallLineSdkWrapperWithIdentifier(string functionName, string identifier) {
+        private static void CallLineSdkWrapperWithIdentifier(string functionName, string identifier) {
+            if (!Application.isPlaying) { return; }
+            if (IsInvalidRuntime(null)) { return; }
+
             object[] parameters = new object[1];
             parameters[0] = identifier;
             lineSdkWrapper.Call(functionName, parameters);
+        }
+
+        private static bool IsInvalidRuntime(string identifier) {
+            if (Application.platform != RuntimePlatform.Android) {
+                Debug.LogWarning("[LINE SDK] This RuntimePlatform is not supported. Only iOS and Android is supported.");
+                var errorJson = @"{""code"":-1, ""message"":""Platform not supported.""}";
+                var result = CallbackPayload.WrapValue(identifier, errorJson);
+                LineSDK.Instance.OnApiError(result);
+                return true;
+            }
+            return false;
         }
     }
 }
