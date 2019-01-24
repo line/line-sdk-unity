@@ -1,11 +1,9 @@
 package com.linecorp.linesdk.unitywrapper.model
 
-import com.google.gson.annotations.SerializedName
 import com.linecorp.linesdk.auth.LineLoginResult
 
 
 data class LoginResultForUnity(
-    @SerializedName("access_token")
     val accessToken: AccessTokenForUnity,
     val scope: String,
     val userProfile: UserProfile,
