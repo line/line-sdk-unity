@@ -2,26 +2,26 @@
 buildscript {
     ext.kotlin_version = '1.3.11'
 
-	repositories {
-		google()
-		jcenter()
-	}
+    repositories {
+        google()
+        jcenter()
+    }
 
-	dependencies {
-		classpath 'com.android.tools.build:gradle:3.2.0'
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-	}
+    }
 }
 
 allprojects {
-   repositories {
-      google()
-      jcenter()
-      flatDir {
-        dirs 'libs'
-      }
-   }
+    repositories {
+        google()
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 apply plugin: 'com.android.application'
@@ -34,50 +34,51 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-**DEPS**}
+    **DEPS**
+}
 
 android {
-	compileSdkVersion **APIVERSION**
-	buildToolsVersion '**BUILDTOOLS**'
+    compileSdkVersion **APIVERSION**
+    buildToolsVersion '**BUILDTOOLS**'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-	defaultConfig {
-		minSdkVersion **MINSDKVERSION**
-		targetSdkVersion **TARGETSDKVERSION**
-		applicationId '**APPLICATIONID**'
-		ndk {
+    defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        applicationId '**APPLICATIONID**'
+        ndk {
             abiFilters **ABIFILTERS**
         }
-	}
+    }
 
-	lintOptions {
-		abortOnError false
-	}
+    lintOptions {
+        abortOnError false
+    }
 
-	aaptOptions {
-		noCompress '.unity3d', '.ress', '.resource', '.obb'**STREAMING_ASSETS**
-	}
+    aaptOptions {
+        noCompress '.unity3d', '.ress', '.resource', '.obb' **STREAMING_ASSETS**
+    }
 
-**SIGN**
-	buildTypes {
-  		debug {
- 			minifyEnabled **MINIFY_DEBUG**
- 			useProguard **PROGUARD_DEBUG**
- 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'**USER_PROGUARD**
-  			jniDebuggable true
-  		}
-  		release {
- 			minifyEnabled **MINIFY_RELEASE**
- 			useProguard **PROGUARD_RELEASE**
-  			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'**USER_PROGUARD**
-  			**SIGNCONFIG**
-  		}
-	}
-**PACKAGING_OPTIONS**
+    **SIGN**
+    buildTypes {
+        debug {
+            minifyEnabled **MINIFY_DEBUG**
+            useProguard **PROGUARD_DEBUG**
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt' **USER_PROGUARD**
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled **MINIFY_RELEASE**
+            useProguard **PROGUARD_RELEASE**
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt' **USER_PROGUARD**
+            **SIGNCONFIG**
+        }
+    }
+    **PACKAGING_OPTIONS**
     bundle {
         language {
             enableSplit = false
@@ -90,6 +91,5 @@ android {
         }
     }
 }
-
 
 **SOURCE_BUILD_SETUP**
