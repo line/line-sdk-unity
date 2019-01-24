@@ -11,15 +11,18 @@ data class AccessTokenForUnity(
     @SerializedName("expires_in")
     val expiresIn: Long,
     @SerializedName("id_token")
-    val idToken: String? = null
+    val idToken: String = ""
 ) {
     companion object {
         fun convertFromLineLoginResult(loginResult: LineLoginResult): AccessTokenForUnity? {
+            val lineIdTokenString = loginResult.lineIdToken?.let {
+                Gson().toJson(it)
+            } ?: ""
             val accessToken = loginResult.lineCredential?.accessToken ?: return null
             return AccessTokenForUnity(
                 accessToken.tokenString,
                 accessToken.expiresInMillis,
-                Gson().toJson(loginResult.lineIdToken)
+                lineIdTokenString
             )
         }
     }

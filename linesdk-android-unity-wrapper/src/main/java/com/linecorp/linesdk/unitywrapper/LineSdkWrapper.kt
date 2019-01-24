@@ -37,6 +37,7 @@ class LineSdkWrapper {
     ) {
         Log.d(TAG, "login")
         Log.d(TAG, "channelId:$channelId")
+        Log.d(TAG, "scope:$scope")
 
         val currentActivity = UnityPlayer.currentActivity
         LineSdkWrapperActivity.startActivity(

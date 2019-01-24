@@ -11,9 +11,7 @@ data class LoginResultForUnity(
 ) {
     companion object {
         fun convertLineResult(lineLoginResult: LineLoginResult): LoginResultForUnity? {
-            val accessToken = AccessTokenForUnity.convertFromLineLoginResult(
-                lineLoginResult
-            ) ?: return null
+            val accessToken = AccessTokenForUnity.convertFromLineLoginResult(lineLoginResult) ?: return null
             val lineProfile = lineLoginResult.lineProfile ?: return null
             val scope = lineLoginResult.lineCredential?.scopes?.joinToString(",") {
                     scope -> scope.code } ?: ""

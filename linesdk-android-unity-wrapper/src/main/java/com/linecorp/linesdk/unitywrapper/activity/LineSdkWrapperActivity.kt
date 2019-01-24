@@ -33,11 +33,10 @@ class LineSdkWrapperActivity : Activity() {
         onlyWebLogin = intent.getBooleanExtra(KEY_ONLY_WEB_LOGIN, false)
 
         val scopeString = intent.getStringExtra(KEY_SCOPE) ?: ""
-        scope = scopeString.split(",")
-            .map { Scope.findScope(it) }
-            .filter { it != null }
-            .map { it -> it!!}
-            .toList()
+        Log.d(TAG, scopeString)
+
+        scope = Scope.parseToList(scopeString)
+        Log.d(TAG, scope.toString())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
