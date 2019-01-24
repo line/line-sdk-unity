@@ -20,7 +20,12 @@
 //
 
 #import "LineSDKURLOpenning.h"
+
+#if COCOAPODS
 @import LineSDK;
+#else
+@import LineSDKObjC;
+#endif
 
 @implementation LineSDKURLOpenning
 

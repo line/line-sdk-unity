@@ -6,11 +6,15 @@ using System.IO;
 using System.Diagnostics;
 using System;
 
-namespace Line.LineSDK {
+namespace Line.LineSDK.Editor {
     public class CocoaPodsInstalling {
-        [PostProcessBuildAttribute(2)]
+        [PostProcessBuildAttribute(3)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
             if (target != BuildTarget.iOS) {
+                return;
+            }
+
+            if (!LineSDKSettings.GetOrCreateSettings().UseCocoaPods) {
                 return;
             }
         
@@ -34,7 +38,7 @@ namespace Line.LineSDK {
                 var text = @"A Podfile is already existing under Xcode project root. Skipping copying of LINE SDK's Podfile. Make sure you have setup Podfile correctly if you are using another package also requires CocoaPods.";
                 UnityEngine.Debug.Log(text);
             } else {
-                var podfilePath = Path.Combine(currentDirectory, "Assets/LineSDK/Editor/Podfile");
+                var podfilePath = Path.Combine(currentDirectory, "Assets/LineSDK/Editor/CocoaPods/Podfile");
                 UnityEngine.Debug.Log(podfilePath);
                 File.Copy(podfilePath, podFileLocation);
             }

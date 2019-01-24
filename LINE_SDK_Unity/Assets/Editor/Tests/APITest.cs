@@ -9,8 +9,8 @@ using System.Linq;
 using Line.LineSDK;
 
 public class APITest {
-	[Test]
-	public void APITestRefreshTokenOk() {
+    [Test]
+    public void APITestRefreshTokenOk() {
         var json = @"
         {
             ""access_token"": ""abc123"",
@@ -39,10 +39,10 @@ public class APITest {
         LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
         Assert.IsEmpty(LineAPI.actions);
-	}
+    }
 
     [Test]
-	public void APITestRefreshTokenError() {
+    public void APITestRefreshTokenError() {
         var json = @"
         {
             ""code"": 123,
@@ -63,10 +63,10 @@ public class APITest {
         LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
         Assert.IsEmpty(LineAPI.actions);
-	}
+    }
 
-	[Test]
-	public void APITestRevokeTokenOk() {
+    [Test]
+    public void APITestRevokeTokenOk() {
         var json = "{}";
         var called = false;
         LineAPI.RevokeAccessToken(result => {
@@ -77,10 +77,10 @@ public class APITest {
         var identifier = LineAPI.actions.Keys.ToList()[0];
         LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-	}
+    }
 
     [Test]
-	public void APITestRevokeTokenError() {
+    public void APITestRevokeTokenError() {
         var json = @"
         {
             ""code"": 123,
@@ -100,10 +100,10 @@ public class APITest {
         var identifier = LineAPI.actions.Keys.ToList()[0];
         LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-	}
+    }
 
     [Test]
-	public void APITestVerifyAccessTokenOk() {
+    public void APITestVerifyAccessTokenOk() {
         var json = @"
         {
             ""client_id"": ""12345678"",
@@ -126,10 +126,10 @@ public class APITest {
         LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
         Assert.IsEmpty(LineAPI.actions);
-	}
+    }
 
     [Test]
-	public void APITestVerifyAccessTokenError() {
+    public void APITestVerifyAccessTokenError() {
         var json = @"
         {
             ""code"": 123,
@@ -149,10 +149,10 @@ public class APITest {
         var identifier = LineAPI.actions.Keys.ToList()[0];
         LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-	}
+    }
 
     [Test]
-	public void APITestGetProfileOk() {
+    public void APITestGetProfileOk() {
         var json = @"
         {
             ""displayName"": ""testuser"",
@@ -179,10 +179,10 @@ public class APITest {
         LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
         Assert.IsEmpty(LineAPI.actions);
-	}
+    }
 
     [Test]
-	public void APITestGetProfileError() {
+    public void APITestGetProfileError() {
         var json = @"
         {
             ""code"": 123,
@@ -202,10 +202,10 @@ public class APITest {
         var identifier = LineAPI.actions.Keys.ToList()[0];
         LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-	}
+    }
 
     [Test]
-	public void APITestGetBotFriendshipStatusOk() {
+    public void APITestGetBotFriendshipStatusOk() {
         var json = @"
         {
             ""friendFlag"": true
@@ -224,10 +224,10 @@ public class APITest {
         LineAPI._OnApiOk(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
         Assert.IsEmpty(LineAPI.actions);
-	}
+    }
 
     [Test]
-	public void APITestGetBotFriendshipStatusError() {
+    public void APITestGetBotFriendshipStatusError() {
         var json = @"
         {
             ""code"": 123,
@@ -247,5 +247,5 @@ public class APITest {
         var identifier = LineAPI.actions.Keys.ToList()[0];
         LineAPI._OnApiError(CallbackPayload.WrapValue(identifier, json));
         Assert.True(called);
-	}
+    }
 }
