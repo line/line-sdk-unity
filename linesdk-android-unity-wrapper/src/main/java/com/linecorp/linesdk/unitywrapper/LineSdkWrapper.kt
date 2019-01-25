@@ -2,14 +2,14 @@ package com.linecorp.linesdk.unitywrapper
 
 import android.util.Log
 import com.google.gson.Gson
-import com.linecorp.linesdk.LineApiResponse
+import com.linecorp.linesdk.Scope
 import com.linecorp.linesdk.api.LineApiClient
 import com.linecorp.linesdk.api.LineApiClientBuilder
 import com.linecorp.linesdk.auth.LineAuthenticationParams
+import com.linecorp.linesdk.unitywrapper.CallbackPayload.Companion.sendMessageError
 import com.linecorp.linesdk.unitywrapper.activity.LineSdkWrapperActivity
 import com.linecorp.linesdk.unitywrapper.model.AccessTokenForUnity
 import com.linecorp.linesdk.unitywrapper.model.BotFriendshipStatus
-import com.linecorp.linesdk.unitywrapper.model.ErrorForUnity
 import com.linecorp.linesdk.unitywrapper.model.UserProfile
 import com.linecorp.linesdk.unitywrapper.model.VerifyAccessTokenResult
 import com.unity3d.player.UnityPlayer
@@ -52,8 +52,14 @@ class LineSdkWrapper {
 
     fun getProfile(identifier: String) {
         Log.d(TAG, "getProfile")
-        val profile = lineApiClient.profile.responseData
-        val userProfile = UserProfile.convertLineProfile(profile)
+        val profile = lineApiClient.profile
+        if(!profile.isSuccess) {
+            sendMessageError(identifier, profile)
+            return
+        }
+
+        val profileData = lineApiClient.profile.responseData
+        val userProfile = UserProfile.convertLineProfile(profileData)
         val jsonString = gson.toJson(userProfile)
         Log.d(TAG, "getProfile: $jsonString")
         CallbackPayload(identifier, jsonString).sendMessageOk()
@@ -118,8 +124,7 @@ class LineSdkWrapper {
         }
 
         val lineCredential = lineApiResponse.responseData
-        val scopeString = lineCredential.scopes.joinToString(",") {
-                scope -> scope.code }
+        val scopeString = Scope.join(lineCredential.scopes)
         val verifyAccessTokenResult =
             VerifyAccessTokenResult(
                 channelId,
@@ -131,22 +136,6 @@ class LineSdkWrapper {
             identifier,
             gson.toJson(verifyAccessTokenResult)
         ).sendMessageOk()
-    }
-
-    private fun <T>sendMessageError(
-        identifier: String,
-        lineApiResponse: LineApiResponse<T>
-    ) {
-        val error = getErrorJsonString(lineApiResponse)
-        CallbackPayload(identifier, error).sendMessageError()
-    }
-
-    private fun <T> getErrorJsonString(lineApiResponse: LineApiResponse<T>): String {
-        val error = ErrorForUnity(
-            lineApiResponse.responseCode.ordinal,
-            lineApiResponse.errorData?.message ?: "error"
-        )
-        return gson.toJson(error)
     }
 
     companion object {
