@@ -3,10 +3,21 @@ using UnityEngine;
 using System.Collections.Generic;
 
 namespace Line.LineSDK {
+    /// <summary>
+    /// Represents a login and token related manager for LINE SDK Login features.
+    /// 
+    /// You should not create or attach this script to your own game object. Instead, drag a `LineSDK` prefab
+    /// to your scene and setup your channel ID there. Then you can use `LineSDK.Instance` to get the component
+    /// and call methods on it.
+    /// </summary>
     public class LineSDK: MonoBehaviour {
         static LineSDK instance;
-
+        
+        /// <summary>
+        /// The channel ID for your app.
+        /// </summary>
         public string channelID;
+        
         public string universalLinkURL;
  
         void Awake() {
@@ -19,6 +30,12 @@ namespace Line.LineSDK {
             SetupSDK();
         }
 
+        /// <summary>
+        /// The shared instance of `LineSDK`. Always use this instance to interact with the login process of the LINE SDK.
+        /// </summary>
+        /// <value>
+        /// The shared instance of `LineSDK`.
+        /// </value>
         public static LineSDK Instance {
             get {
                 if (instance == null) {
@@ -36,31 +53,64 @@ namespace Line.LineSDK {
             NativeInterface.SetupSDK(channelID, universalLinkURL);
         }
 
+        /// <summary>
+        /// Logs in to the LINE Platform with the specified scopes.
+        /// </summary>
+        /// <param name="scopes">
+        /// The set of permissions requested by your app. If `null` or empty, "profile" scope will be used.
+        /// </param>
+        /// <param name="action">
+        /// The callback action to be invoked when the login process finishes.
+        /// </param>
         public void Login(List<string> scopes, Action<Result<LoginResult>> action) {
             Login(scopes, null, action);
         }
 
+        /// <summary>
+        /// Logs in to the LINE Platform with the specified scopes and an option.
+        /// </summary>
+        /// <param name="scopes">
+        /// The set of permissions requested by your app. If `null` or empty, "profile" scope will be used.
+        /// </param>
+        /// <param name="option">
+        /// The options used during the login process.
+        /// </param>
+        /// <param name="action">
+        /// The callback action to be invoked when the login process finishes.
+        /// </param>
         public void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
             LineAPI.Login(scopes, option, action);
         }
 
+        /// <summary>
+        /// Logs out the current user by revoking the access token.
+        /// </summary>
+        /// <param name="action">
+        /// The callback action to be invoked when the logout process finishes.
+        /// </param>
         public void Logout(Action<Result<Unit>> action) {
             LineAPI.Logout(action);
         }
 
-        public AccessToken CurrentAccessToken {
+        /// <summary>
+        /// Gets the current access token in use.
+        /// </summary>
+        /// <value>
+        /// A `StoredAccessToken` object which contains the access token value currently in use.
+        /// </value>
+        public StoredAccessToken CurrentAccessToken {
             get {
                 var result = NativeInterface.GetCurrentAccessToken();
                 if (string.IsNullOrEmpty(result)) { return null; }
-                return JsonUtility.FromJson<AccessToken>(result);
+                return JsonUtility.FromJson<StoredAccessToken>(result);
             }
         }
 
-        public void OnApiOk(string result) {
+        internal void OnApiOk(string result) {
             LineAPI._OnApiOk(result);
         }
 
-        public void OnApiError(string result) {
+        internal void OnApiError(string result) {
             LineAPI._OnApiError(result);
         }
     }
