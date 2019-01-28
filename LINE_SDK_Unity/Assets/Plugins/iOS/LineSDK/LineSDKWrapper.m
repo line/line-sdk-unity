@@ -23,7 +23,7 @@
 #import "LineSDKAppDelegateListener.h"
 #import "LineSDKNativeCallbackPayload.h"
 
-#if COCOAPODS
+#if LINESDK_COCOAPODS
 @import LineSDK;
 #else
 @import LineSDKObjC;

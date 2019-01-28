@@ -48,6 +48,19 @@ namespace Line.LineSDK.Editor {
             var log = Run("pod", "install");
             UnityEngine.Debug.Log(log);
             Directory.SetCurrentDirectory(currentDirectory);
+
+            ConfigureXcodeForCocoaPods(pathToBuiltProject);
+        }
+
+        static void ConfigureXcodeForCocoaPods(string projectRoot) {
+            var path = PBXProject.GetPBXProjectPath(projectRoot);
+            var project = new PBXProject();
+            project.ReadFromFile(path);
+            var target = project.TargetGuidByName(PBXProject.GetUnityTargetName());
+
+            project.SetBuildProperty(target, "GCC_PREPROCESSOR_DEFINITIONS", "$(inherited) LINESDK_COCOAPODS=1");
+
+            project.WriteToFile(path);
         }
 
         static void AddSearchPaths() {

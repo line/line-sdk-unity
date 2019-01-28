@@ -21,7 +21,7 @@
 
 #import "LineSDKURLOpenning.h"
 
-#if COCOAPODS
+#if LINESDK_COCOAPODS
 @import LineSDK;
 #else
 @import LineSDKObjC;
