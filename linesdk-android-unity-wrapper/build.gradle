@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+buildscript {
+    ext.kotlin_version = '1.3.11'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "line-sdk-unity-wrapper-${variant.name}.aar"
+        }
+    }
+
+}
+
+dependencies {
+    implementation 'com.linecorp:linesdk:5.0.1'
+    compileOnly files('libs/classes.jar')
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation  "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
