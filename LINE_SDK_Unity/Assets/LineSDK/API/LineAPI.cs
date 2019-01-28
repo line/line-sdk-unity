@@ -71,10 +71,10 @@ namespace Line.LineSDK {
     }
 
     partial class LineAPI {
-        internal static void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
+        internal static void Login(string[] scopes, LoginOption option, Action<Result<LoginResult>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<LoginResult>(action));
-            if (scopes == null || scopes.Count == 0) {
-                scopes = new List<string> {"profile"};
+            if (scopes == null || scopes.Length == 0) {
+                scopes = new string[] {"profile"};
             }
             
             var onlyWebLogin = false;
@@ -83,7 +83,7 @@ namespace Line.LineSDK {
                 onlyWebLogin = option.OnlyWebLogin;
                 botPrompt = option.BotPrompt;
             }
-            NativeInterface.Login(string.Join(" ", scopes.ToArray()), onlyWebLogin, botPrompt, identifier);
+            NativeInterface.Login(string.Join(" ", scopes), onlyWebLogin, botPrompt, identifier);
         }
 
         internal static void Logout(Action<Result<Unit>> action) {

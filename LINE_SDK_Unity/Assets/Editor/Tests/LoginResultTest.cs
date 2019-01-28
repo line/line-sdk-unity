@@ -37,7 +37,8 @@ public class LoginResultTest {
         Assert.NotNull(result.AccessToken);
         Assert.AreEqual("abc123", result.AccessToken.Value);
 
-        Assert.AreEqual("profile openid", result.Scope);
+        var scopes = new string[] {"profile", "openid"};
+        Assert.AreEqual(scopes, result.Scopes);
 
         Assert.NotNull(result.UserProfile);
         Assert.AreEqual("user_id", result.UserProfile.UserId);

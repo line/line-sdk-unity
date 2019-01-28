@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace Line.LineSDK {
     /// <summary>
@@ -62,7 +61,7 @@ namespace Line.LineSDK {
         /// <param name="action">
         /// The callback action to be invoked when the login process finishes.
         /// </param>
-        public void Login(List<string> scopes, Action<Result<LoginResult>> action) {
+        public void Login(string[] scopes, Action<Result<LoginResult>> action) {
             Login(scopes, null, action);
         }
 
@@ -78,7 +77,7 @@ namespace Line.LineSDK {
         /// <param name="action">
         /// The callback action to be invoked when the login process finishes.
         /// </param>
-        public void Login(List<string> scopes, LoginOption option, Action<Result<LoginResult>> action) {
+        public void Login(string[] scopes, LoginOption option, Action<Result<LoginResult>> action) {
             LineAPI.Login(scopes, option, action);
         }
 

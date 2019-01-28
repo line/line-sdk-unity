@@ -5,7 +5,6 @@ using NUnit.Framework;
 using System.Collections;
 using System;
 using System.Linq;
-using System.Collections.Generic;
 
 using Line.LineSDK;
 
@@ -34,7 +33,7 @@ public class LoginTest {
         ";
         var called = false;
         
-        LineAPI.Login(new List<string>{"profile"}, null, result => {
+        LineAPI.Login(new string[] {"profile"}, null, result => {
             result.MatchOk(value => {
                 called = true;
                 Assert.AreEqual("abc123", value.AccessToken.Value);
