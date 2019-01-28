@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933946b163def4c74baa26fd55101278, type: 3}
   m_Name: LineSDKSettings
   m_EditorClassIdentifier: 
-  iOSDependencyManager: Carthage
+  iOSDependencyManager: CocoaPods

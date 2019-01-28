@@ -25,7 +25,7 @@ public class AccessTokenTest {
         Assert.NotNull(accessToken);
         Assert.AreEqual(accessToken.Value, "abc123");
         Assert.AreEqual(accessToken.ExpiresIn, 12345);
-        Assert.AreEqual(accessToken.IdToken, "abcdefg");
+        Assert.AreEqual(accessToken.IdTokenRaw, "abcdefg");
         Assert.AreEqual(accessToken.RefreshToken, "abc321");
         Assert.AreEqual(accessToken.Scope, "profile openid");
         Assert.AreEqual(accessToken.TokenType, "Bearer");

@@ -28,7 +28,7 @@ public class APITest {
                 called = true;
                 Assert.AreEqual("abc123", token.Value);
                 Assert.AreEqual(12345, token.ExpiresIn);
-                Assert.AreEqual("abcdefg", token.IdToken);
+                Assert.AreEqual("abcdefg", token.IdTokenRaw);
                 Assert.AreEqual("abc321", token.RefreshToken);
                 Assert.AreEqual("profile openid", token.Scope);
                 Assert.AreEqual("Bearer", token.TokenType);

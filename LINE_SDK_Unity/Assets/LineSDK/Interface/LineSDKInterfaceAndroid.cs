@@ -26,7 +26,6 @@ namespace Line.LineSDK
             parameters[0] = channelId;
 
             lineSdkWrapper.Call("setupSdk", parameters);
-
         }
 
         internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier)
