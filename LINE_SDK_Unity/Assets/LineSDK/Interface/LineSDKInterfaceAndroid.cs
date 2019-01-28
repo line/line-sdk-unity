@@ -5,7 +5,11 @@ namespace Line.LineSDK
 {
     internal class NativeInterface
     {
+        #if UNITY_EDITOR
+        static AndroidJavaObject lineSdkWrapper = null;
+        #else
         static AndroidJavaObject lineSdkWrapper = new AndroidJavaObject("com.linecorp.linesdk.unitywrapper.LineSdkWrapper");
+        #endif
 
         static NativeInterface()
         {

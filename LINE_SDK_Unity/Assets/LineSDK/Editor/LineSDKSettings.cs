@@ -68,7 +68,7 @@ namespace Line.LineSDK.Editor {
             var property = settings.FindProperty("iOSDependencyManager");
             var selected = LineSDKSettings.DependencySelectedIndex(property.stringValue);
 
-            selected = EditorGUILayout.Popup("iOS Dependency Manager", selected, LineSDKSettings.dependencyManagerOptions, null);
+            selected = EditorGUILayout.Popup("iOS Dependency Manager", selected, LineSDKSettings.dependencyManagerOptions);
 
             if (selected < 0) {
                 selected = 0;
