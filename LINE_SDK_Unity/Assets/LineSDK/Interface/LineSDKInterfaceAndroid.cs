@@ -75,7 +75,7 @@ namespace Line.LineSDK
 
         private static void CallLineSdkWrapperWithIdentifier(string functionName, string identifier) {
             if (!Application.isPlaying) { return; }
-            if (IsInvalidRuntime(null)) { return; }
+            if (IsInvalidRuntime(identifier)) { return; }
 
             object[] parameters = new object[1];
             parameters[0] = identifier;

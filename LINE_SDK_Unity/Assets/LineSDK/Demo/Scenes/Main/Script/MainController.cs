@@ -136,5 +136,7 @@ public class MainController : MonoBehaviour {
             return;
         }
         rawJsonText.text = text;
+        var scrollContentTransform = (RectTransform)rawJsonText.gameObject.transform.parent;
+        scrollContentTransform.localPosition = Vector3.zero;
     }
 }
