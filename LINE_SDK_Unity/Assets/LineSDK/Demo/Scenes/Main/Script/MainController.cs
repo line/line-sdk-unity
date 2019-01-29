@@ -13,7 +13,8 @@ public class MainController : MonoBehaviour {
     public Text rawJsonText;
 
     public void Login() {
-        LineSDK.Instance.Login(null, result => {
+        var scopes = new string[] {"profile"};
+        LineSDK.Instance.Login(scopes, result => {
             result.Match(
                 value => {
                     StartCoroutine(UpdateProfile(value.UserProfile));
