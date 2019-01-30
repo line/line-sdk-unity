@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: linecorp
-  productName: linesdkplugin
+  productName: linesdk.unitydemo
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -152,7 +152,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.linecorp.linesdkplugin
+    Android: com.linecorp.linesdk.unitydemo
     iOS: com.linecorp.linesdk.sample
   buildNumber: {}
   AndroidBundleVersionCode: 1
