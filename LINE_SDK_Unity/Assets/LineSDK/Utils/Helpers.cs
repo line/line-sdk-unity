@@ -3,10 +3,15 @@ using UnityEngine;
 
 namespace Line.LineSDK {
     public static class Helpers {
-        private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
-        public static DateTime FromUnixTime(long unixTime) {
-            return epoch.AddSeconds(unixTime);
+        internal static bool IsInvalidRuntime(string identifier, RuntimePlatform platform) {
+            if (Application.platform != platform) {
+                Debug.LogWarning("[LINE SDK] This RuntimePlatform is not supported. Only iOS and Android is supported.");
+                var errorJson = @"{""code"":-1, ""message"":""Platform not supported.""}";
+                var result = CallbackPayload.WrapValue(identifier, errorJson);
+                LineSDK.Instance.OnApiError(result);
+                return true;
+            }
+            return false;
         }
     }
 }

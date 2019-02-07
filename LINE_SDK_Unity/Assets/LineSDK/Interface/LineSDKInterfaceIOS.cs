@@ -86,16 +86,8 @@ namespace Line.LineSDK {
         }
 
         private static bool IsInvalidRuntime(string identifier) {
-            if (Application.platform != RuntimePlatform.IPhonePlayer) {
-                Debug.LogWarning("[LINE SDK] This RuntimePlatform is not supported. Only iOS and Android is supported.");
-                var errorJson = @"{""code"":-1, ""message"":""Platform not supported.""}";
-                var result = CallbackPayload.WrapValue(identifier, errorJson);
-                LineSDK.Instance.OnApiError(result);
-                return true;
-            }
-            return false;
+            return Helpers.IsInvalidRuntime(identifier, RuntimePlatform.IPhonePlayer);
         }
-
     }
 }
 

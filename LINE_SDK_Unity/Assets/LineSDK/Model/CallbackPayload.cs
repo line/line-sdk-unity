@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Line.LineSDK {
     [Serializable]
-    public class CallbackPayload {
+    internal class CallbackPayload {
         [SerializeField]
         private string identifier;
         [SerializeField]
         private string value;
 
-        public string Identifier { get { return identifier; } }
-        public string Value { get { return value; } }
+        internal string Identifier { get { return identifier; } }
+        internal string Value { get { return value; } }
 
-        public static CallbackPayload FromJson(string json) {
+        internal static CallbackPayload FromJson(string json) {
             return JsonUtility.FromJson<CallbackPayload>(json);
         }
 

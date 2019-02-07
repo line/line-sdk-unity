@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Line.LineSDK.Editor {
     class LineSDKSettings : ScriptableObject {
-        public const string assetPath = "Assets/Editor/LineSDK/LineSDKSettings.asset";
+        const string assetPath = "Assets/Editor/LineSDK/LineSDKSettings.asset";
 
         internal static string[] dependencyManagerOptions = new string[] { "CocoaPods", "Carthage" };
 
