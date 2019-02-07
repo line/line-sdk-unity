@@ -59,14 +59,18 @@ namespace Line.LineSDK.Editor {
         internal static Cartfile LoadOrCreate(string path) {
             Cartfile file;
             if (File.Exists(path)) {
-                var text = File.ReadAllText(path);
-                file = new Cartfile(text);
+                file = Load(path);
             } else {
                 file = new Cartfile();
             }
 
             file.path = path;
             return file;
+        }
+
+        internal static Cartfile Load(string path) {
+            var text = File.ReadAllText(path);
+            return new Cartfile(text);
         }
 
         internal Cartfile(string text) {

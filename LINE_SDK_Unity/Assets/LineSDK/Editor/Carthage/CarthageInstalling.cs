@@ -55,9 +55,20 @@ namespace Line.LineSDK.Editor {
 
         static void PrepareCartfile() {
             var file = Cartfile.LoadOrCreate(CartfilePath);
-            // file.UpdateOrAddEntry("github", "\"line/line-sdk-ios-swift\"", "~> 5.1");
-            file.UpdateOrAddEntry("github", "\"line/line-sdk-ios-swift\"", "\"feature/convenience-methods\"");
+            var predefinedItem = bundledCartfile().items[0];
+            file.UpdateOrAddEntry(predefinedItem.source, predefinedItem.content, predefinedItem.version);
             file.Save();
+        }
+
+        static string BundledCartfilePath {
+            get { 
+                var currentDirectory = Directory.GetCurrentDirectory();
+                return Path.Combine(currentDirectory, "Assets/LineSDK/Editor/Carthage/Cartfile");
+            }
+        }
+
+        static Cartfile bundledCartfile() {
+            return Cartfile.Load(BundledCartfilePath);
         }
 
         static void CarthageUpdate() {
