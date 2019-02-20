@@ -83,7 +83,7 @@ namespace Line.LineSDK
         }
 
         private static bool IsInvalidRuntime(string identifier) {
-            return Helpers.IsInvalidRuntime(identifier, RuntimePlatform.IPhonePlayer);
+            return Helpers.IsInvalidRuntime(identifier, RuntimePlatform.Android);
         }
     }
 }
