@@ -1,7 +1,7 @@
 //
 //  LineSDKNativeCallbackPayload.m
 //
-//  Copyright (c) 2016-present, LINE Corporation. All rights reserved.
+//  Copyright (c) 2019-present, LINE Corporation. All rights reserved.
 //
 //  You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
 //  copy and distribute this software in source code or binary form for use
