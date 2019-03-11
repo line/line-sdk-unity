@@ -18,6 +18,7 @@
 bin/
 gen/
 out/
+html/ # Doxygen HTML output
 
 # Gradle files
 .gradle/
