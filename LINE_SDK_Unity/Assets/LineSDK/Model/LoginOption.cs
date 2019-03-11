@@ -27,7 +27,7 @@ namespace Line.LineSDK {
         /// Uses the web authentication flow instead of the LINE app-to-app authentication flow.
         /// </summary>
         /// <value>
-        /// Sets this value to `true` if you only want to use web authentication flow.
+        /// Set to `true` if you only want to use web authentication flow.
         /// </value>
         public bool OnlyWebLogin { get; set; }
 

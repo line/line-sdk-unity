@@ -31,7 +31,7 @@ namespace Line.LineSDK
 
         static NativeInterface()
         {
-            // Ensure the LineSDK instance existing.
+            // Ensure the LineSDK instance exists.
             var _ = LineSDK.Instance;
         }
 
@@ -65,7 +65,7 @@ namespace Line.LineSDK
             CallLineSdkWrapperWithIdentifier("logout", identifier);
         }
 
-        internal static void RefreshAccessToken(string identifier) { 
+        internal static void RefreshAccessToken(string identifier) {
             CallLineSdkWrapperWithIdentifier("refreshAccessToken", identifier);
         }
 
