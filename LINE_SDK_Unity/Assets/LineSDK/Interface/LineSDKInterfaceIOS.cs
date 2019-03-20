@@ -27,7 +27,7 @@ using System.Reflection;
 namespace Line.LineSDK {
     internal class NativeInterface {
         static NativeInterface() {
-            // Ensure the LineSDK instance existing.
+            // Ensure the LineSDK instance exists.
             var _ = LineSDK.Instance;
         }
 
@@ -44,7 +44,7 @@ namespace Line.LineSDK {
         internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier) {
             if (!Application.isPlaying) { return; }
             if (IsInvalidRuntime(identifier)) { return; }
-            line_sdk_login(scope, onlyWebLogin, botPrompt, identifier); 
+            line_sdk_login(scope, onlyWebLogin, botPrompt, identifier);
         }
 
         [DllImport("__Internal")]

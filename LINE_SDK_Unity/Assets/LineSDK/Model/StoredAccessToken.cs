@@ -29,16 +29,16 @@ namespace Line.LineSDK {
         private string access_token;
         [SerializeField]
         private long expires_in;
-        
+
         /// <summary>
         /// The value of the access token.
         /// </summary>
         public string Value { get { return access_token; } }
-        
+
         /// <summary>
-        /// Amount of time in seconds until the access token expires. Be careful that this value is stored when the 
-        /// token was created and it will not get updated. To know the latest `ExpiresIn` for a token, 
-        /// call `API.VerifyAccessToken` instead.
+        /// Expiration time of the token in seconds **at the time the token was
+        /// created**. This value is never updated. To get the up-to-date
+        /// `ExpiresIn` value for a token, call `API.VerifyAccessToken`.
         /// </summary>
         public long ExpiresIn { get { return expires_in; } }
     }

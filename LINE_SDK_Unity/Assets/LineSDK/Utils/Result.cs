@@ -38,7 +38,7 @@ namespace Line.LineSDK {
         /// <summary>
         /// Creates a new success result with an input value.
         /// </summary>
-        /// <param name="value">The value represets successful result.</param>
+        /// <param name="value">The value represents a successful result.</param>
         /// <returns>The initialized result with a success value.</returns>
         public static Result<T> Ok(T value) {
             var r = new Result<T>();
@@ -50,7 +50,7 @@ namespace Line.LineSDK {
         /// <summary>
         /// Creates a new failure result with an input error.
         /// </summary>
-        /// <param name="error">The error represets failed result.</param>
+        /// <param name="error">The error represents a failed result.</param>
         /// <returns>The initialized result with an error.</returns>
         public static Result<T> Error(Error error) {
             var r = new Result<T>();

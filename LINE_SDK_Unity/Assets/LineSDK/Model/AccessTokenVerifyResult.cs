@@ -36,13 +36,13 @@ namespace Line.LineSDK {
         public string ChannelId { get { return client_id; } }
 
         /// <summary>
-        /// Scope string of the access token.
+        /// String specifying the access token's scope.
         /// </summary>
         /// <value></value>
         public string Scope { get { return scope; } }
-        
+
         /// <summary>
-        /// The amount of time until the access token expires.
+        /// Number of seconds until the access token expires.
         /// </summary>
         /// <value></value>
         public long ExpiresIn { get { return expires_in; } }

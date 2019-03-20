@@ -21,7 +21,7 @@ using UnityEngine;
 
 namespace Line.LineSDK {
     /// <summary>
-    /// Represents error happens in Line SDK.
+    /// Represents an error that happens in LINE SDK.
     /// </summary>
     [Serializable]
     public class Error {
@@ -31,19 +31,20 @@ namespace Line.LineSDK {
         private string message;
 
         /// <summary>
-        /// The error code indicates what kind of error happens.
+        /// Error code showing the type of error.
         /// </summary>
         /// <value>
-        /// This value is different depending on running platforms. Refere to Line SDK for Swift 
-        /// and Line SDK for Android reference to check the error code for more.
-        /// 
-        /// - iOS (Swift): https://developers.line.biz/en/reference/ios-sdk-swift/Enums/LineSDKError.html
-        /// - Android: https://developers.line.biz/en/reference/android-sdk/reference/com/linecorp/linesdk/LineApiResponseCode.html
+        /// This value differs per operating system. For details, see the
+        /// reference documentation for LINE SDK for iOS Swift and LINE SDK for
+        /// Android.
+        ///
+        /// - LINE SDK for iOS Swift: https://developers.line.biz/en/reference/ios-sdk-swift/Enums/LineSDKError.html
+        /// - LINE SDK for Android: https://developers.line.biz/en/reference/android-sdk/reference/com/linecorp/linesdk/LineApiResponseCode.html
         /// </value>
         public int Code { get { return code; } }
 
         /// <summary>
-        /// A human readable error text describes the reason of error.
+        /// Human-readable error description.
         /// </summary>
         public string Message { get { return message; } }
 

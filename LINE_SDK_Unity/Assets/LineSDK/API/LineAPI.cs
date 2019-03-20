@@ -29,7 +29,7 @@ namespace Line.LineSDK {
         /// Refreshes the current access token.
         /// </summary>
         /// <param name="action">
-        /// The callback action to be invoked when this API finishes.
+        /// The callback action to be invoked after this operation.
         /// </param>
         public static void RefreshAccessToken(Action<Result<AccessToken>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<AccessToken>(action));
@@ -38,12 +38,13 @@ namespace Line.LineSDK {
 
         /// <summary>
         /// Revokes the current access token.
-        /// 
-        /// After the access token is revoked, you cannot use it again to access the LINE Platform. 
-        /// You need to have the user authorize your app again to issue a new access token before accessing the LINE Platform.
+        ///
+        /// After the access token is revoked, you cannot use it again to access
+        /// the LINE Platform. The user must authorize your app again to issue
+        /// a new access token before accessing the LINE Platform.
         /// </summary>
         /// <param name="action">
-        /// The callback action to be invoked when this API finishes.
+        /// The callback action to be invoked after this operation.
         /// </param>
         public static void RevokeAccessToken(Action<Result<Unit>> action) {
             var identifier = AddAction(FlattenAction.UnitFlatten(action));
@@ -54,7 +55,7 @@ namespace Line.LineSDK {
         /// Verifies the current access token.
         /// </summary>
         /// <param name="action">
-        /// The callback action to be invoked when this API finishes.
+        /// The callback action to be invoked after this operation.
         /// </param>
         public static void VerifyAccessToken(Action<Result<AccessTokenVerifyResult>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<AccessTokenVerifyResult>(action));
@@ -63,11 +64,11 @@ namespace Line.LineSDK {
 
         /// <summary>
         /// Gets the user’s profile.
-        /// 
+        ///
         /// The "profile" scope is required to perform this operation.
         /// </summary>
         /// <param name="action">
-        /// The callback action to be invoked when this API finishes.
+        /// The callback action to be invoked after this operation.
         /// </param>
         public static void GetProfile(Action<Result<UserProfile>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<UserProfile>(action));
@@ -76,11 +77,11 @@ namespace Line.LineSDK {
 
         /// <summary>
         /// Gets the friendship status of the user and the bot linked to your LINE Login channel.
-        /// 
+        ///
         /// The "profile" scope is required to perform this operation.
         /// </summary>
         /// <param name="action">
-        /// The callback action to be invoked when this API finishes.
+        /// The callback action to be invoked after this operation.
         /// </param>
         public static void GetBotFriendshipStatus(Action<Result<BotFriendshipStatus>> action) {
             var identifier = AddAction(FlattenAction.JsonFlatten<BotFriendshipStatus>(action));
@@ -94,7 +95,7 @@ namespace Line.LineSDK {
             if (scopes == null || scopes.Length == 0) {
                 scopes = new string[] {"profile"};
             }
-            
+
             var onlyWebLogin = false;
             string botPrompt = null;
             if (option != null) {

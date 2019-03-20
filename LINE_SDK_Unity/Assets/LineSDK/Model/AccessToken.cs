@@ -21,21 +21,22 @@ using UnityEngine;
 
 namespace Line.LineSDK {
     /// <summary>
-    /// Represents an access token which is used to access the LINE Platform. Most API calls 
-    /// to the LINE Platform require an access token as evidence of successful authorization. 
-    /// A valid access token is issued after the user grants your app the permissions that 
-    /// your app requests. An access token is bound to permissions (scopes) that define the 
-    /// API endpoints that you can access. Choose the permissions for your channel in the 
+    /// Represents an access token which is used to access the LINE Platform. Most API calls
+    /// to the LINE Platform require an access token as evidence of successful authorization.
+    /// A valid access token is issued after the user grants your app the permissions that
+    /// your app requests. An access token is bound to permissions (scopes) that define the
+    /// API endpoints that you can access. Choose the permissions for your channel in the
     /// LINE Developers site and set them in the login method used in your app.
-    /// 
-    /// An access token will expire after a certain period. `ExpiresIn` contains the duration
-    /// to the expiration time when this access token 
-    /// 
-    /// By default, the LINE SDK stores an access token in a secure place on device for your app and 
-    /// obtains authorization when you access the LINE Platform through the framework request methods.
-    /// 
-    /// Do not try to create an access token yourself. You can get the stored access token with less 
-    /// properties by `LineSDK.Instance.CurrentAccessToken`.
+    ///
+    /// An access token expires after a certain period. `ExpiresIn` specifies the time until
+    /// which this access token expires.
+    ///
+    /// By default, the LINE SDK stores access tokens in a secure place on the device running
+    /// your app and obtains authorization when you access the LINE Platform through the
+    /// framework request methods.
+    ///
+    /// Don't try to create an access token yourself. You can get the stored access token with
+    /// fewer properties with `LineSDK.Instance.CurrentAccessToken`.
     /// </summary>
     [Serializable]
     public class AccessToken {
@@ -58,13 +59,14 @@ namespace Line.LineSDK {
         public string Value { get { return access_token; } }
 
         /// <summary>
-        /// Amount of time in seconds until the access token expires.
+        /// Number of seconds until the access token expires.
         /// </summary>
         public long ExpiresIn { get { return expires_in; } }
 
         /// <summary>
-        /// The raw string value of ID token bound to the access token. The value exists only if the access token
-        /// is obtained with the "openID" permission.
+        /// The raw string value of the ID token bound to the access token. The
+        /// value exists only if the access token is obtained with the "openID"
+        /// permission.
         /// </summary>
         public string IdTokenRaw { get { return id_token; } }
 
@@ -72,14 +74,15 @@ namespace Line.LineSDK {
         /// The refresh token bound to the access token.
         /// </summary>
         public string RefreshToken { get { return refresh_token; } }
-        
+
         /// <summary>
         /// Permissions granted by the user.
         /// </summary>
         public string Scope { get { return scope; } }
 
         /// <summary>
-        /// The expected authorization type when this token used in request header. Fixed to "Bearer" for now.
+        /// The expected authorization type when this token is used in a request
+        /// header. Fixed to "Bearer" for now.
         /// </summary>
         public string TokenType { get { return token_type; } }
     }
