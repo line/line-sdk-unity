@@ -21,21 +21,22 @@ using UnityEngine;
 namespace Line.LineSDK {
     /// <summary>
     /// Represents a login and token related manager for LINE SDK Login features.
-    /// 
-    /// You should not create or attach this script to your own game object. Instead, drag a `LineSDK` prefab
-    /// to your scene and setup your channel ID there. Then you can use `LineSDK.Instance` to get the component
-    /// and call methods on it.
+    ///
+    /// Don't create or attach this script to your own game object. Instead,
+    /// drag a `LineSDK` prefab into your scene and set up your channel ID there.
+    /// Then you can use `LineSDK.Instance` to get the component and call
+    /// methods on it.
     /// </summary>
     public class LineSDK: MonoBehaviour {
         static LineSDK instance;
-        
+
         /// <summary>
         /// The channel ID for your app.
         /// </summary>
         public string channelID;
-        
+
         public string universalLinkURL;
- 
+
         void Awake() {
             if (instance == null) {
                 instance = this;
@@ -47,7 +48,8 @@ namespace Line.LineSDK {
         }
 
         /// <summary>
-        /// The shared instance of `LineSDK`. Always use this instance to interact with the login process of the LINE SDK.
+        /// The shared instance of `LineSDK`. Always use this instance to
+        /// interact with the login process of the LINE SDK.
         /// </summary>
         /// <value>
         /// The shared instance of `LineSDK`.
@@ -73,7 +75,8 @@ namespace Line.LineSDK {
         /// Logs in to the LINE Platform with the specified scopes.
         /// </summary>
         /// <param name="scopes">
-        /// The set of permissions requested by your app. If `null` or empty, "profile" scope will be used.
+        /// The set of permissions requested by your app. If `null` or empty,
+        /// the "profile" scope is used.
         /// </param>
         /// <param name="action">
         /// The callback action to be invoked when the login process finishes.
@@ -86,7 +89,8 @@ namespace Line.LineSDK {
         /// Logs in to the LINE Platform with the specified scopes and an option.
         /// </summary>
         /// <param name="scopes">
-        /// The set of permissions requested by your app. If `null` or empty, "profile" scope will be used.
+        /// The set of permissions requested by your app. If `null` or empty,
+        /// the "profile" scope is used.
         /// </param>
         /// <param name="option">
         /// The options used during the login process.
@@ -112,7 +116,8 @@ namespace Line.LineSDK {
         /// Gets the current access token in use.
         /// </summary>
         /// <value>
-        /// A `StoredAccessToken` object which contains the access token value currently in use.
+        /// A `StoredAccessToken` object which contains the access token value
+        /// currently in use.
         /// </value>
         public StoredAccessToken CurrentAccessToken {
             get {
@@ -131,4 +136,3 @@ namespace Line.LineSDK {
         }
     }
 }
-
