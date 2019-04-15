@@ -3,7 +3,9 @@
     package="com.linecorp.linesdk.unitywrapper">
 
     <application>
-        <activity android:name="com.linecorp.linesdk.unitywrapper.activity.LineSdkWrapperActivity"
+        <activity
+            android:name="com.linecorp.linesdk.unitywrapper.activity.LineSdkWrapperActivity"
+            android:configChanges="orientation|keyboard|screenSize|smallestScreenSize|screenLayout"
             android:theme="@style/TransparentStyle" />
     </application>
 
