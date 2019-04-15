@@ -3,7 +3,6 @@ package com.linecorp.linesdk.unitywrapper.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.google.gson.Gson
 import com.linecorp.linesdk.LineApiResponseCode
 import com.linecorp.linesdk.Scope
@@ -13,6 +12,7 @@ import com.linecorp.linesdk.unitywrapper.CallbackPayload
 import com.linecorp.linesdk.unitywrapper.CallbackPayload.Companion.sendMessageError
 import com.linecorp.linesdk.unitywrapper.model.ErrorForUnity
 import com.linecorp.linesdk.unitywrapper.model.LoginResultForUnity
+import com.linecorp.linesdk.unitywrapper.util.Log
 
 class LineSdkWrapperActivity : Activity() {
     private var onlyWebLogin: Boolean = false
