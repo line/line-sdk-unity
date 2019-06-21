@@ -3,7 +3,8 @@
     package="com.linecorp.linesdk.unitywrapper">
 
     <application>
-        <activity android:name="com.linecorp.linesdk.unitywrapper.activity.LineSdkWrapperActivity"
+        <activity android:name="com.linecorp.linesdk.unitywrapper.activity.LineSdkWrapperActivity" 
+                  android:configChanges="keyboard|orientation|screenSize"
             android:theme="@style/TransparentStyle" />
     </application>
 
