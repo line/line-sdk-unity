@@ -1,6 +1,5 @@
 package com.linecorp.linesdk.unitywrapper
 
-import android.util.Log
 import com.google.gson.Gson
 import com.linecorp.linesdk.Scope
 import com.linecorp.linesdk.api.LineApiClient
@@ -12,6 +11,7 @@ import com.linecorp.linesdk.unitywrapper.model.AccessTokenForUnity
 import com.linecorp.linesdk.unitywrapper.model.BotFriendshipStatus
 import com.linecorp.linesdk.unitywrapper.model.UserProfile
 import com.linecorp.linesdk.unitywrapper.model.VerifyAccessTokenResult
+import com.linecorp.linesdk.unitywrapper.util.Log
 import com.unity3d.player.UnityPlayer
 
 
