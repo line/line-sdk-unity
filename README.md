@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo contains LINE SDK for Unity. It allows you use LINE Login and LINE API in your Unity games easier.
+This repo contains the LINE SDK for Unity. It allows you to use LINE Login and LINE API in your Unity games easier.
 
 ## Features
 
@@ -30,7 +30,7 @@ To use the LINE SDK with your game, follow the steps below.
 
 * Create a channel. 
 * Integrate LINE Login into your Unity project.
-* Make API calls from your game using the SDK or from server-side.
+* Make API calls from your game using the SDK or from the server-side.
 
 For more information, refer to the [LINE SDK for Unity guide](https://developers.line.biz/en/docs/unity-sdk/) on the [LINE Developers site](https://developers.line.biz).
 
@@ -50,6 +50,6 @@ To have a quick look at the features of the LINE SDK, try our starter app by fol
 
 ## Contributing
 
-If you believe you have discovered a vulnerability or have an issue related to security, please **DO NOT** open a public issue. Instead, send us a mail to [dl_oss_dev@linecorp.com](mailto:dl_oss_dev@linecorp.com).
+If you believe you have discovered a vulnerability or have an issue related to security, please **DO NOT** open a public issue. Instead, send us an email to [dl_oss_dev@linecorp.com](mailto:dl_oss_dev@linecorp.com).
 
 For contributing to this project, please see [CONTRIBUTING.md](https://github.com/line/line-sdk-unity/blob/master/CONTRIBUTING.md).
