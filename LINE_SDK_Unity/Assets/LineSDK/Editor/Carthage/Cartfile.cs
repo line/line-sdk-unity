@@ -16,6 +16,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if UNITY_IOS
 using System.IO;
 using System.Collections.Generic;
 using System;
@@ -127,3 +128,4 @@ namespace Line.LineSDK.Editor {
         }
     }
 }
+#endif
