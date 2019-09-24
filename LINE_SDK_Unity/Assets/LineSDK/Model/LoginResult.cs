@@ -32,6 +32,8 @@ namespace Line.LineSDK {
         private UserProfile userProfile;
         [SerializeField]
         private bool friendshipStatusChanged;
+        [SerializeField]
+        private string IDTokenNonce;
 
         /// <summary>
         /// The access token obtained by the login process.
@@ -56,5 +58,11 @@ namespace Line.LineSDK {
         /// https://developers.line.me/en/docs/line-login/web/link-a-bot/.
         /// </summary>
         public bool IsFriendshipStatusChanged { get { return friendshipStatusChanged; } }
+
+        /// <summary>
+        /// The `nonce` value when requesting ID Token during login process. Use this value as a parameter when you
+        /// verify the ID Token against the LINE server. This value is `nil` if `.openID` permission is not requested.
+        /// </summary>
+        public string IdTokenNonce { get { return IDTokenNonce; } }
     }
 }

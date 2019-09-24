@@ -2,5 +2,5 @@ platform :ios, '10.0'
 
 target 'Unity-iPhone' do
     use_frameworks!
-    pod 'LineSDKSwift/ObjC', '~> 5.1'
+    pod 'LineSDKSwift/ObjC', '~> 5.3'
 end
