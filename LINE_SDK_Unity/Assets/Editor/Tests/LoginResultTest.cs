@@ -46,7 +46,8 @@ public class LoginResultTest {
                 ""pictureUrl"": ""https://example.com/abcd"",
                 ""statusMessage"": ""Hi""
             },
-            ""friendshipStatusChanged"": true
+            ""friendshipStatusChanged"": true,
+            ""IDTokenNonce"": ""ABCD""
         }
         ";
         var result = JsonUtility.FromJson<LoginResult>(json);
@@ -62,5 +63,6 @@ public class LoginResultTest {
         Assert.AreEqual("user_id", result.UserProfile.UserId);
 
         Assert.True(result.IsFriendshipStatusChanged);
+        Assert.AreEqual("ABCD", result.IdTokenNonce);
     }
 }
