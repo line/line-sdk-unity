@@ -8,7 +8,8 @@ data class LoginResultForUnity(
     val accessToken: AccessTokenForUnity,
     val scope: String,
     val userProfile: UserProfile?,
-    val friendshipStatusChanged: Boolean
+    val friendshipStatusChanged: Boolean,
+    val IDTokenNonce: String?
 ) {
     companion object {
         fun convertLineResult(lineLoginResult: LineLoginResult): LoginResultForUnity? {
@@ -23,7 +24,8 @@ data class LoginResultForUnity(
                 accessToken,
                 scope,
                 lineProfile,
-                lineLoginResult.friendshipStatusChanged ?: false
+                lineLoginResult.friendshipStatusChanged ?: false,
+                lineLoginResult.nonce
             )
         }
 
