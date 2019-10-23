@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.0
+
+### Added
+
+* Add `IdTokenNonce` to `LoginResult`. This value can be used against the ID token verification API as a parameter.
+
 ## 1.0.2
 
 ### Fixed
