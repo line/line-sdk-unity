@@ -60,8 +60,8 @@ namespace Line.LineSDK {
         public bool IsFriendshipStatusChanged { get { return friendshipStatusChanged; } }
 
         /// <summary>
-        /// The `nonce` value when requesting an ID Token during the login process. Use this value as
-        /// a parameter when you verify the ID Token against the LINE server. This value is `nil` if
+        /// The `nonce` value when requesting an ID token during the login process. Use this value as
+        /// a parameter when you verify the ID token against the LINE server. This value is `nil` if
         /// you don't have the `.openID` permission.
         /// </summary>
         public string IdTokenNonce { get { return IDTokenNonce; } }
