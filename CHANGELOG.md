@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.1
+
+### Fixed
+
+* A script problem that prevents Carthage building with Gem version 3.
+
 ## 1.1.0
 
 ### Added
