@@ -129,7 +129,7 @@ namespace Line.LineSDK.Editor {
             File.Copy(installScript, Path.Combine(projectRoot, "copy_carthage_framework.rb"), true);
 
             Directory.SetCurrentDirectory(projectRoot);
-            ShellCommand.Run("gem", "install bundler --no-ri --no-rdoc");
+            ShellCommand.Run("gem", "install bundler --no-document");
             ShellCommand.Run("bundle", "install --path vendor/bundle");
             ShellCommand.Run("bundle", "exec ruby copy_carthage_framework.rb");
             Directory.SetCurrentDirectory(currentDirectory);
