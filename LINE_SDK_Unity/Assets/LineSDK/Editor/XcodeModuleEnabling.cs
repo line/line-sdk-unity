@@ -35,7 +35,11 @@ namespace Line.LineSDK.Editor {
             PBXProject proj = new PBXProject();
             proj.ReadFromFile(projPath);
 
-            string appTarget = proj.TargetGuidByName("Unity-iPhone");
+#if UNITY_2019_3_OR_NEWER
+            var appTarget = proj.GetUnityFrameworkTargetGuid();
+#else
+            var appTarget = proj.TargetGuidByName("Unity-iPhone");
+#endif
             proj.SetBuildProperty (appTarget, "CLANG_ENABLE_MODULES", "YES");
             File.WriteAllText(projPath, proj.WriteToString());
         }

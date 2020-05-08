@@ -102,7 +102,11 @@ namespace Line.LineSDK.Editor {
             var path = PBXProject.GetPBXProjectPath(projectRoot);
             var project = new PBXProject();
             project.ReadFromFile(path);
+#if UNITY_2019_3_OR_NEWER
+            var target = project.GetUnityFrameworkTargetGuid();
+#else
             var target = project.TargetGuidByName(PBXProject.GetUnityTargetName());
+#endif
 
             project.AddFileToBuild(
                 target, 
