@@ -2,6 +2,8 @@
 
 ## 1.1.2
 
+### Fixed
+
 * An issue which prevents exporting correct Xcode project on Unity 2019.3.
 
 ## 1.1.1
