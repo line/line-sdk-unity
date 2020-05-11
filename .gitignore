@@ -289,7 +289,6 @@ ExportedObj/
 *.pdb
 *.opendb
 *.VC.db
-Packages/
 UnityPackageManager/
 
 # Unity3D generated meta files
