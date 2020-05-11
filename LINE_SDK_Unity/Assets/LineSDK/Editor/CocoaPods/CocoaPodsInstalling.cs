@@ -58,9 +58,9 @@ namespace Line.LineSDK.Editor {
                 UnityEngine.Debug.Log(text);
             } else {
 #if UNITY_2019_3_OR_NEWER
-                var bundledPodfile = "Assets/LineSDK/Editor/CocoaPods/Podfile_2019_3"
+                var bundledPodfile = "Assets/LineSDK/Editor/CocoaPods/Podfile_2019_3";
 #else
-                var bundledPodfile = "Assets/LineSDK/Editor/CocoaPods/Podfile_2017_4"
+                var bundledPodfile = "Assets/LineSDK/Editor/CocoaPods/Podfile_2017_4";
 #endif
                 var podfilePath = Path.Combine(currentDirectory, bundledPodfile);
                 UnityEngine.Debug.Log(podfilePath);
