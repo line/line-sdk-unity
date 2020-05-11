@@ -16,6 +16,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+
+#if UNITY_IOS
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.TestTools;
@@ -78,3 +80,4 @@ public class CartfileTest {
         Assert.True(item.dirty);
     }
 }
+#endif

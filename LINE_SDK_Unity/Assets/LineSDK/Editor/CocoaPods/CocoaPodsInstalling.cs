@@ -57,7 +57,12 @@ namespace Line.LineSDK.Editor {
                 var text = @"A Podfile is already existing under Xcode project root. Skipping copying of LINE SDK's Podfile. Make sure you have setup Podfile correctly if you are using another package also requires CocoaPods.";
                 UnityEngine.Debug.Log(text);
             } else {
-                var podfilePath = Path.Combine(currentDirectory, "Assets/LineSDK/Editor/CocoaPods/Podfile");
+#if UNITY_2019_3_OR_NEWER
+                var bundledPodfile = "Assets/LineSDK/Editor/CocoaPods/Podfile_2019_3";
+#else
+                var bundledPodfile = "Assets/LineSDK/Editor/CocoaPods/Podfile_2017_4";
+#endif
+                var podfilePath = Path.Combine(currentDirectory, bundledPodfile);
                 UnityEngine.Debug.Log(podfilePath);
                 File.Copy(podfilePath, podFileLocation);
             }
@@ -74,7 +79,11 @@ namespace Line.LineSDK.Editor {
             var path = PBXProject.GetPBXProjectPath(projectRoot);
             var project = new PBXProject();
             project.ReadFromFile(path);
+#if UNITY_2019_3_OR_NEWER
+            var target = project.GetUnityFrameworkTargetGuid();
+#else
             var target = project.TargetGuidByName(PBXProject.GetUnityTargetName());
+#endif
 
             project.SetBuildProperty(target, "GCC_PREPROCESSOR_DEFINITIONS", "$(inherited) LINESDK_COCOAPODS=1");
 
