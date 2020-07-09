@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.3
+
+### Fixed
+
+* Updated the template gradle build file to make it compile on Unity 2019.3 or later.
+
 ## 1.1.2
 
 ### Fixed
