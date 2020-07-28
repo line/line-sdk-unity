@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4
+
+### Fixed
+
+* Add AndroidX flag to gradle property solve dependency issue.
+
 ## 1.1.3
 
 ### Fixed
