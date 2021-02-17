@@ -142,7 +142,8 @@ namespace Line.LineSDK.Editor {
 
             Directory.SetCurrentDirectory(projectRoot);
             ShellCommand.Run("gem", "install bundler --no-document");
-            ShellCommand.Run("bundle", "install --path vendor/bundle");
+            ShellCommand.Run("bundle", "config set --local path 'vendor/bundle'");
+            ShellCommand.Run("bundle", "install");
             ShellCommand.Run("bundle", "exec ruby copy_carthage_framework.rb");
             Directory.SetCurrentDirectory(currentDirectory);
         }
