@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.5
+
+### Fixed
+
+* Carthage build should now work properly for Xcode 12. [#30](https://github.com/line/line-sdk-unity/pull/30)
+
 ## 1.1.4
 
 ### Fixed
