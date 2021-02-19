@@ -49,6 +49,8 @@ namespace Line.LineSDK.Editor {
             }
 
             PrepareCartfile();
+            // Copy the bundle Xcode 12 carthage script workaround to work path.
+            PrepareCarthageScriptWorkaround();
             CarthageUpdate();
             ConfigureXcodeForCarthage();
             AddCarthageCopyPhase();
@@ -79,6 +81,12 @@ namespace Line.LineSDK.Editor {
             file.Save();
         }
 
+        static void PrepareCarthageScriptWorkaround() {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var carthageScript = Path.Combine(currentDirectory, "Assets/LineSDK/Editor/Carthage/carthage.sh");
+            File.Copy(carthageScript, Path.Combine(projectRoot, "carthage.sh"), true);
+        }
+
         static string BundledCartfilePath {
             get { 
                 var currentDirectory = Directory.GetCurrentDirectory();
@@ -93,7 +101,7 @@ namespace Line.LineSDK.Editor {
         static void CarthageUpdate() {
             var currentDirectory = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(projectRoot);
-            var log = ShellCommand.Run("carthage", "update --cache-builds");
+            var log = ShellCommand.Run("sh", "carthage.sh update --platform iOS --cache-builds");
             UnityEngine.Debug.Log(log);
             Directory.SetCurrentDirectory(currentDirectory);
         }
@@ -114,7 +122,7 @@ namespace Line.LineSDK.Editor {
                 PBXSourceTree.Source));
             project.AddFileToBuild(
                 target, 
-                project.AddFile("Carthage/Build/iOS/LineSDKObjC.framework", "Frameworks/LineSDKObjC.framework.framework", 
+                project.AddFile("Carthage/Build/iOS/LineSDKObjC.framework", "Frameworks/LineSDKObjC.framework", 
                 PBXSourceTree.Source));
 
             project.SetBuildProperty(target, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "YES");
@@ -134,7 +142,8 @@ namespace Line.LineSDK.Editor {
 
             Directory.SetCurrentDirectory(projectRoot);
             ShellCommand.Run("gem", "install bundler --no-document");
-            ShellCommand.Run("bundle", "install --path vendor/bundle");
+            ShellCommand.Run("bundle", "config set --local path 'vendor/bundle'");
+            ShellCommand.Run("bundle", "install");
             ShellCommand.Run("bundle", "exec ruby copy_carthage_framework.rb");
             Directory.SetCurrentDirectory(currentDirectory);
         }
