@@ -24,7 +24,7 @@ data class LoginResultForUnity(
                 accessToken,
                 scope,
                 lineProfile,
-                lineLoginResult.friendshipStatusChanged ?: false,
+                lineLoginResult.friendshipStatusChanged,
                 lineLoginResult.nonce
             )
         }

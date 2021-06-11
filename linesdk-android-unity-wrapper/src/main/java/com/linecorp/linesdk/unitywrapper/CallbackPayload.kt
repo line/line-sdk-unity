@@ -54,7 +54,7 @@ data class CallbackPayload(
         private fun <T> getErrorJsonString(lineApiResponse: LineApiResponse<T>): String {
             val error = ErrorForUnity(
                 lineApiResponse.responseCode.ordinal,
-                lineApiResponse.errorData?.message ?: "error"
+                lineApiResponse.errorData.message ?: "error"
             )
             return gson.toJson(error)
         }
