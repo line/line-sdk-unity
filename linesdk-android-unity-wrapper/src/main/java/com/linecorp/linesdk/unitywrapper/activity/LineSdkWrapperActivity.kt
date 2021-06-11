@@ -15,29 +15,13 @@ import com.linecorp.linesdk.unitywrapper.model.LoginResultForUnity
 import com.linecorp.linesdk.unitywrapper.util.Log
 
 class LineSdkWrapperActivity : Activity() {
-    private var onlyWebLogin: Boolean = false
-    private lateinit var channelId: String
     private lateinit var identifier: String
-    private lateinit var scope: List<Scope>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_line_sdk_wrapper)
 
-        parseIntent()
-        startLineSdkLoginActivity()
-    }
-
-    private fun parseIntent() {
         identifier = intent.getStringExtra(KEY_IDENTIFIER) ?: ""
-        channelId = intent.getStringExtra(KEY_CHANNEL_ID) ?: ""
-        onlyWebLogin = intent.getBooleanExtra(KEY_ONLY_WEB_LOGIN, false)
-
-        val scopeString = intent.getStringExtra(KEY_SCOPE) ?: ""
-        Log.d(TAG, scopeString)
-
-        scope = Scope.parseToList(scopeString)
-        Log.d(TAG, scope.toString())
+        startLineSdkLoginActivity()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,7 +55,24 @@ class LineSdkWrapperActivity : Activity() {
     }
 
     private fun startLineSdkLoginActivity() {
-        val lineAuthenticationParams = LineAuthenticationParams.Builder().scopes(scope).build()
+        val channelId = intent.getStringExtra(KEY_CHANNEL_ID) ?: ""
+        val onlyWebLogin = intent.getBooleanExtra(KEY_ONLY_WEB_LOGIN, false)
+        val botPrompt = parseBotPrompt(intent.getStringExtra(KEY_BOT_PROMPT))
+
+        val scopeString = intent.getStringExtra(KEY_SCOPE) ?: ""
+        Log.d(TAG, scopeString)
+
+        val scope = Scope.parseToList(scopeString)
+        Log.d(TAG, scope.toString())
+
+        val builder = LineAuthenticationParams.Builder()
+        builder.scopes(scope)
+        if (botPrompt != null) {
+            builder.botPrompt(botPrompt)
+        }
+
+        val lineAuthenticationParams = builder.build()
+
         val loginIntent = if (onlyWebLogin) {
             LineLoginApi.getLoginIntentWithoutLineAppAuth(this, channelId, lineAuthenticationParams)
         } else {
@@ -79,6 +80,14 @@ class LineSdkWrapperActivity : Activity() {
         }
 
         startActivityForResult(loginIntent, REQUEST_CODE_LOGIN)
+    }
+
+    private fun parseBotPrompt(name: String?): LineAuthenticationParams.BotPrompt? {
+        val nonNullName = name ?: return null
+
+        return LineAuthenticationParams.BotPrompt.values().firstOrNull {
+            it.name.equals(nonNullName, ignoreCase = true)
+        }
     }
 
     companion object {
