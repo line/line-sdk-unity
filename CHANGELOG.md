@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.6
+
+### Fixed
+
+* On Android, now the `BotPrompt` option can pass to the final native activity correctly. [#32](https://github.com/line/line-sdk-unity/issues/32)
+
 ## 1.1.5
 
 ### Fixed
