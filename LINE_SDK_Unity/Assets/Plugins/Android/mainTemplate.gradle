@@ -28,7 +28,7 @@ allprojects {
     }
 }
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -51,9 +51,10 @@ android {
     }
 
     defaultConfig {
+consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
         minSdkVersion **MINSDKVERSION**
         targetSdkVersion **TARGETSDKVERSION**
-        applicationId '**APPLICATIONID**'
+        
         ndk {
             abiFilters **ABIFILTERS**
         }
@@ -83,17 +84,7 @@ android {
         }
     }
     **PACKAGING_OPTIONS**
-    bundle {
-        language {
-            enableSplit = false
-        }
-        density {
-            enableSplit = false
-        }
-        abi {
-            enableSplit = true
-        }
-    }
+    
 }
 
 **SOURCE_BUILD_SETUP**
