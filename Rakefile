@@ -6,7 +6,7 @@ task :release do
     version = STDIN.gets.strip
 
     puts "Exporting unity package...".bold
-    unity_app = "/Applications/Unity/Hub/Editor/2019.4.19f1/Unity.app"
+    unity_app = "/Applications/Unity/Hub/Editor/2019.4.28f1/Unity.app"
     working_path = `pwd`.strip
     proj_path = "#{working_path}/LINE_SDK_Unity"
     puts `#{unity_app}/Contents/MacOS/Unity -batchmode -projectPath #{proj_path} -exportPackage Assets/Plugins Assets/LineSDK output.unitypackage -quit`
