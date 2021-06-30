@@ -23,7 +23,6 @@ task :updateDocVersion, [:version] do |task, args|
     puts "work", args[:version]
     text = File.read('Doxyfile')
     new_contents = text.gsub(/PROJECT_NUMBER\s+=\s+(\d+\.)?(\d+\.)?(\*|\d+)/, "PROJECT_NUMBER         = #{args[:version]}")
-    puts new_contents
 
     File.open("Doxyfile", "w") {|file| file.puts new_contents }
 end
