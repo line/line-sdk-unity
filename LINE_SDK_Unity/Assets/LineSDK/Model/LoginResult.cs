@@ -55,7 +55,7 @@ namespace Line.LineSDK {
         /// Indicates that the friendship status between the user and the bot changed during the login.
         /// This value is non-nil only if the `BotPrompt` is specified as part of the option when the
         /// user logs in. For more information, see "Linking a bot with your LINE Login channel" at
-        /// https://developers.line.me/en/docs/line-login/web/link-a-bot/.
+        /// https://developers.line.biz/en/docs/line-login/link-a-bot/.
         /// </summary>
         public bool IsFriendshipStatusChanged { get { return friendshipStatusChanged; } }
 
