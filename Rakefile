@@ -13,5 +13,16 @@ task :release do
     FileUtils.mkdir "Release" unless File.exists?("Release")
     FileUtils.mv "#{proj_path}/output.unitypackage", "./Release/line_sdk_unity_#{version}.unitypackage"
 
+    Rake::Task["updateDocVersion"].invoke(version)
+
     `open ./Release`
+end
+
+desc "Update version in Doxyfile"
+task :updateDocVersion, [:version] do |task, args|
+    puts "work", args[:version]
+    text = File.read('Doxyfile')
+    new_contents = text.gsub(/PROJECT_NUMBER\s+=\s+(\d+\.)?(\d+\.)?(\*|\d+)/, "PROJECT_NUMBER         = #{args[:version]}")
+
+    File.open("Doxyfile", "w") {|file| file.puts new_contents }
 end
