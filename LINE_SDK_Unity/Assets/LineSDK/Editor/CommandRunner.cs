@@ -18,6 +18,7 @@
 
 using System.Diagnostics;
 using System;
+using System.Collections.Specialized;
 using System.IO;
 
 namespace Line.LineSDK.Editor {
@@ -45,6 +46,7 @@ namespace Line.LineSDK.Editor {
             ProcessStartInfo psi = new ProcessStartInfo(); 
             psi.FileName = command;
             psi.UseShellExecute = false;
+            psi.EnvironmentVariables.Add("LANG", "en_US.UTF-8"); // Cocoa Pods require this
             psi.RedirectStandardOutput = true;
             if (args != null) {
                 psi.Arguments = args;
@@ -55,7 +57,11 @@ namespace Line.LineSDK.Editor {
             string error = p.StandardError.ReadToEnd();
             p.WaitForExit();
             if (!string.IsNullOrEmpty(error)) {
-                UnityEngine.Debug.LogError(error);
+                if (p.ExitCode == 0) {
+                    UnityEngine.Debug.LogWarning(error);
+                } else {
+                    UnityEngine.Debug.LogError(error);
+                }
             }
             p.Close();
             return output;
