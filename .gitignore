@@ -335,3 +335,5 @@ Assets/StreamingAssets/crashlytics-build.properties
 
 # End of https://www.gitignore.io/api/xcode,swift,macos,ios,android,unity,Intellij
 LINE_SDK_Unity/.idea/
+LINE_SDK_Unity/Assets/Plugins/iOS/LineSDK/vendor/LineSDKObjC.xcframework/**/*.meta
+LINE_SDK_Unity/Assets/Plugins/iOS/LineSDK/vendor/LineSDKObjC.xcframework.meta

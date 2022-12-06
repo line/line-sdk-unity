@@ -1,0 +1,7 @@
+*.bcsymbolmap filter=lfs diff=lfs merge=lfs -text
+**/LineSDKObjC.xcframework/**/Assets.car filter=lfs diff=lfs merge=lfs -text
+**/LineSDKObjC.xcframework/**/LineSDKObjC.framework*/**/Info.plist filter=lfs diff=lfs merge=lfs -text
+**/LineSDKObjC.xcframework/**/LineSDKObjC filter=lfs diff=lfs merge=lfs -text
+**/LineSDKObjC.xcframework/**/*.swiftdoc filter=lfs diff=lfs merge=lfs -text
+**/LineSDKObjC.xcframework/**/*.swiftinterface filter=lfs diff=lfs merge=lfs -text
+**/LineSDKObjC.xcframework/**/LineSDKObjC.framework/_CodeSignature/CodeResources filter=lfs diff=lfs merge=lfs -text
