@@ -334,3 +334,4 @@ Assets/StreamingAssets/crashlytics-build.properties
 /.bundle
 
 # End of https://www.gitignore.io/api/xcode,swift,macos,ios,android,unity,Intellij
+LINE_SDK_Unity/.idea/
