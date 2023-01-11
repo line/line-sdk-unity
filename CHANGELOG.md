@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.2.0
+
+Upgrade to this version of LINE SDK Unity requires full removal of the previous version. Please remove the "LineSDK" folder and LINE SDK files under "Plugins" to perform a clean upgrade. Please follow the [installation guide](https://developers.line.biz/en/docs/unity-sdk/upgrade-guide/) for more information.
+
+### Added
+
+* The `xcframework` way to integrate LINE SDK Unity to the iOS project. Now the package manager is not required anymore and the integration is much easier. [#46](https://github.com/line/line-sdk-unity/pull/46)
+* Unity library compatible with Android gradle file. Now the package supports building as a library, which is the default behavior in a newer version of Unity.
+
+### Fixed
+
+* Some internal fixes such as documentation URL.
+
 ## 1.1.6
 
 ### Fixed
