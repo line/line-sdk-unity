@@ -66,11 +66,17 @@ class LineSdkWrapper {
     }
 
     fun getCurrentAccessToken(): String {
-        val accessToken = AccessTokenForUnity(
-            lineApiClient.currentAccessToken.responseData.tokenString,
-            lineApiClient.currentAccessToken.responseData.expiresInMillis
-        )
-        return gson.toJson(accessToken)
+        val tokenResponse = lineApiClient.currentAccessToken
+        return if (tokenResponse.isSuccess) {
+            val accessToken = AccessTokenForUnity(
+                tokenResponse.responseData.tokenString,
+                tokenResponse.responseData.expiresInMillis
+            )
+            gson.toJson(accessToken)
+        } else {
+            Log.e(TAG, "getCurrentAccessToken failed: errorCode: ${tokenResponse.responseCode}")
+            ""
+        }
     }
 
     fun logout(identifier: String) {
