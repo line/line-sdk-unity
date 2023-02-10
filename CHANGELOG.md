@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.1
+
+### Fixed
+
+* An issue that accessing `LineSDK.Instance.CurrentAccessToken` throws an exception on Android in some cases. [#49](https://github.com/line/line-sdk-unity/pull/49)
+
 ## 1.2.0
 
 Upgrade to this version of LINE SDK Unity requires full removal of the previous version. Please remove the "LineSDK" folder and LINE SDK files under "Plugins" to perform a clean upgrade. Please follow the [installation guide](https://developers.line.biz/en/docs/unity-sdk/upgrade-guide/) for more information.
