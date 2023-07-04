@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.2
+
+### Fixed
+
+* Upgrade the Android native package dependency version and the repo. This fixes a build issue of using deprecated repo for Android. [#51](https://github.com/line/line-sdk-unity/issues/51)
+
 ## 1.2.1
 
 ### Fixed
