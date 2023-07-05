@@ -1,12 +1,31 @@
 apply plugin: 'com.android.library'
 **APPLY_PLUGINS**
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.linecorp:linesdk:5.1.1'
+ 
+    implementation 'com.linecorp.linesdk:linesdk:5.8.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.11"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
 **DEPS**}
 
 android {
