@@ -33,7 +33,8 @@ class LineSdkWrapper {
         identifier: String,
         scope: String,
         onlyWebLogin: Boolean,
-        botPrompt: String?
+        botPrompt: String?,
+        tokenNonce: String?
     ) {
         Log.d(TAG, "login")
         Log.d(TAG, "channelId:$channelId")
@@ -46,7 +47,8 @@ class LineSdkWrapper {
             channelId,
             scope,
             onlyWebLogin,
-            botPrompt ?: LineAuthenticationParams.BotPrompt.normal.name
+            botPrompt ?: LineAuthenticationParams.BotPrompt.normal.name,
+            tokenNonce
         )
     }
 
