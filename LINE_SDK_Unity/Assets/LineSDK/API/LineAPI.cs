@@ -76,7 +76,7 @@ namespace Line.LineSDK {
         }
 
         /// <summary>
-        /// Gets the friendship status of the user and the bot linked to your LINE Login channel.
+        /// Gets the friendship status of the user and the LINE Official Account linked to your LINE Login channel.
         ///
         /// The "profile" scope is required to perform this operation.
         /// </summary>
