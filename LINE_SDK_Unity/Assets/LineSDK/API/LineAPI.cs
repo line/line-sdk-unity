@@ -98,11 +98,13 @@ namespace Line.LineSDK {
 
             var onlyWebLogin = false;
             string botPrompt = null;
+            string tokenNonce = null;
             if (option != null) {
                 onlyWebLogin = option.OnlyWebLogin;
                 botPrompt = option.BotPrompt;
+                tokenNonce = option.IDTokenNonce;
             }
-            NativeInterface.Login(string.Join(" ", scopes), onlyWebLogin, botPrompt, identifier);
+            NativeInterface.Login(string.Join(" ", scopes), onlyWebLogin, botPrompt, tokenNonce, identifier);
         }
 
         internal static void Logout(Action<Result<Unit>> action) {

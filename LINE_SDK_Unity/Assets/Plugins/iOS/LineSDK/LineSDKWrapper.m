@@ -60,25 +60,31 @@
                      scopes:(NSString *)scopes
                onlyWebLogin:(BOOL)onlyWebLogin
                   botPrompt:(NSString *)botPrompt
+               IDTokenNonce:(NSString *)nonce
 {
     NSSet* permissions = [LineSDKLoginPermission permissionsFrom:scopes];
 
-    NSMutableArray *options = @[].mutableCopy;
+    LineSDKLoginManagerParameters *parameters = [[LineSDKLoginManagerParameters alloc] init];
     if (onlyWebLogin) {
-        [options addObject:LineSDKLoginManagerOptions.onlyWebLogin];
+        parameters.onlyWebLogin = YES;
     }
+
     if ([botPrompt isEqualToString:@"normal"]) {
-        [options addObject:LineSDKLoginManagerOptions.botPromptNormal];
+        parameters.botPromptStyle = LineSDKLoginManagerBotPrompt.normal;
     } else if ([botPrompt isEqualToString:@"aggressive"]) {
-        [options addObject:LineSDKLoginManagerOptions.botPromptAggressive];
+        parameters.botPromptStyle = LineSDKLoginManagerBotPrompt.aggressive;
+    }
+
+    if (nonce) {
+        parameters.IDTokenNonce = nonce;
     }
 
     [[LineSDKLoginManager sharedManager]
      loginWithPermissions:permissions
      inViewController:nil
-     options:[options copy]
+     parameters:parameters
      completionHandler:^(LineSDKLoginResult * result, NSError *error)
-    {
+     {
         if (error) {
             LineSDKNativeCallbackPayload *payload =
             [LineSDKNativeCallbackPayload payloadWithIdentifier:identifier value:[self wrapError:error]];
@@ -89,6 +95,19 @@
             [payload sendMessageOK];
         }
     }];
+}
+
+- (void)loginWithIdentifier:(NSString *)identifier
+                     scopes:(NSString *)scopes
+               onlyWebLogin:(BOOL)onlyWebLogin
+                  botPrompt:(NSString *)botPrompt
+{
+    [self loginWithIdentifier:identifier
+                       scopes:scopes
+                 onlyWebLogin:onlyWebLogin
+                    botPrompt:botPrompt
+                 IDTokenNonce:nil
+    ];
 }
 
 - (void)logoutWithIdentifier:(NSString *)identifier {
@@ -106,7 +125,7 @@
 }
 
 - (void)refreshAccessTokenWithIdentifier:(NSString *)identifier {
-    [LineSDKAPI refreshAccessTokenWithCompletionHandler:^(LineSDKAccessToken * token, NSError * error) {
+    [LineSDKAuthAPI refreshAccessTokenWithCompletionHandler:^(LineSDKAccessToken * token, NSError * error) {
         if (error) {
             LineSDKNativeCallbackPayload *payload =
             [LineSDKNativeCallbackPayload payloadWithIdentifier:identifier value:[self wrapError:error]];
@@ -120,7 +139,7 @@
 }
 
 - (void)revokeAccessTokenWithIdentifier:(NSString *)identifier {
-    [LineSDKAPI revokeAccessTokenWithCompletionHandler:^(NSError * error) {
+    [LineSDKAuthAPI revokeAccessTokenWithCompletionHandler:^(NSError * error) {
         if (error) {
             LineSDKNativeCallbackPayload *payload =
             [LineSDKNativeCallbackPayload payloadWithIdentifier:identifier value:[self wrapError:error]];
@@ -134,7 +153,7 @@
 }
 
 - (void)verifyAccessTokenWithIdentifier:(NSString *)identifier {
-    [LineSDKAPI verifyAccessTokenWithCompletionHandler:^(LineSDKAccessTokenVerifyResult *result, NSError *error) {
+    [LineSDKAuthAPI verifyAccessTokenWithCompletionHandler:^(LineSDKAccessTokenVerifyResult *result, NSError *error) {
         if (error) {
             LineSDKNativeCallbackPayload *payload =
             [LineSDKNativeCallbackPayload payloadWithIdentifier:identifier value:[self wrapError:error]];

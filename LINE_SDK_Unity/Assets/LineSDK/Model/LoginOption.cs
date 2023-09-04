@@ -39,5 +39,15 @@ namespace Line.LineSDK {
         /// - "aggressive": Opens a new screen to add a bot as a friend after the user agrees to the permissions on the consent screen.
         /// </value>
         public string BotPrompt { get; set; }
+
+        /// <summary>
+        /// The nonce value for ID token verification.
+        /// </summary>
+        /// <value>
+        /// This value is used when requesting user authorization with `.openID` permission to prevent replay attacks 
+        /// to your backend server. If not set, LINE SDK will generate a random value as the token nonce. Whether set 
+        /// or not, LINE SDK verifies against the nonce value in received ID token locally.
+        /// </value>
+        public string IDTokenNonce { get; set; }
     }
 }

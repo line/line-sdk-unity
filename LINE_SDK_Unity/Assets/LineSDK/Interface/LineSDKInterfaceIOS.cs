@@ -40,11 +40,11 @@ namespace Line.LineSDK {
         }
 
         [DllImport("__Internal")]
-        private static extern void line_sdk_login(string scope, bool onlyWebLogin, string botPrompt, string identifier);
-        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier) {
+        private static extern void line_sdk_login(string scope, bool onlyWebLogin, string botPrompt, string tokenNonce, string identifier);
+        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string tokenNonce, string identifier) {
             if (!Application.isPlaying) { return; }
             if (IsInvalidRuntime(identifier)) { return; }
-            line_sdk_login(scope, onlyWebLogin, botPrompt, identifier);
+            line_sdk_login(scope, onlyWebLogin, botPrompt, tokenNonce, identifier);
         }
 
         [DllImport("__Internal")]

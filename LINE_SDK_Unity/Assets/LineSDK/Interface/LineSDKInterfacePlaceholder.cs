@@ -20,8 +20,7 @@
 namespace Line.LineSDK {
     internal class NativeInterface {
         internal static void SetupSDK(string channelId, string universalLinkURL) {}
-        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier) {
-            
+        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string tokenNonce, string identifier) {
         }
         internal static void Logout(string identifier) {}
         internal static void RefreshAccessToken(string identifier) {}

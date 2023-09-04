@@ -31,6 +31,11 @@
                      scopes:(NSString *)scopes
                onlyWebLogin:(BOOL)onlyWebLogin
                   botPrompt:(NSString *)botPrompt;
+- (void)loginWithIdentifier:(NSString *)identifier
+                     scopes:(NSString *)scopes
+               onlyWebLogin:(BOOL)onlyWebLogin
+                  botPrompt:(NSString *)botPrompt
+               IDTokenNonce:(NSString *)nonce;
 - (void)logoutWithIdentifier:(NSString *)identifier;
 - (void)refreshAccessTokenWithIdentifier:(NSString *)identifier;
 - (void)revokeAccessTokenWithIdentifier:(NSString *)identifier;

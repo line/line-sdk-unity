@@ -61,13 +61,20 @@ void line_sdk_setup(const char* channelId, const char* universalLinkURL) {
     [[LineSDKWrapper sharedInstance] setupChannelID:nsChannelID universalLink:nsUniversalLinkURL];
 }
 
-LINE_SDK_EXTERNC void line_sdk_login(const char* scope, bool onlyWebLogin, const char* botPrompt, const char* identifier);
-void line_sdk_login(const char* scope, bool onlyWebLogin, const char* botPrompt, const char* identifier) {
+LINE_SDK_EXTERNC void line_sdk_login(const char* scope, bool onlyWebLogin, const char* botPrompt, const char* tokenNonce, const char* identifier);
+void line_sdk_login(const char* scope, bool onlyWebLogin, const char* botPrompt, const char* tokenNonce, const char* identifier) {
     NSString *nsScope = LineSDKMakeNSString(scope);
     NSString *nsBotPrompt = LineSDKMakeNSString(botPrompt);
+    NSString *nsTokenNonce = LineSDKMakeNSString(tokenNonce);
     NSString *nsIdentifier = LineSDKMakeNSString(identifier);
 
-    [[LineSDKWrapper sharedInstance] loginWithIdentifier:nsIdentifier scopes:nsScope onlyWebLogin:onlyWebLogin botPrompt:nsBotPrompt];
+    [[LineSDKWrapper sharedInstance] 
+    loginWithIdentifier:nsIdentifier 
+                 scopes:nsScope 
+           onlyWebLogin:onlyWebLogin 
+              botPrompt:nsBotPrompt 
+           IDTokenNonce:nsTokenNonce
+    ];
 }
 
 LINE_SDK_EXTERNC void line_sdk_logout(const char* identifier) {

@@ -58,6 +58,7 @@ class LineSdkWrapperActivity : Activity() {
         val channelId = intent.getStringExtra(KEY_CHANNEL_ID) ?: ""
         val onlyWebLogin = intent.getBooleanExtra(KEY_ONLY_WEB_LOGIN, false)
         val botPrompt = parseBotPrompt(intent.getStringExtra(KEY_BOT_PROMPT))
+        val tokenNonce = intent.getStringExtra(KEY_TOKEN_NONCE)
 
         val scopeString = intent.getStringExtra(KEY_SCOPE) ?: ""
         Log.d(TAG, scopeString)
@@ -69,6 +70,9 @@ class LineSdkWrapperActivity : Activity() {
         builder.scopes(scope)
         if (botPrompt != null) {
             builder.botPrompt(botPrompt)
+        }
+        if (tokenNonce != null) {
+            builder.nonce(tokenNonce)
         }
 
         val lineAuthenticationParams = builder.build()
@@ -96,6 +100,7 @@ class LineSdkWrapperActivity : Activity() {
         private const val KEY_SCOPE = "scope"
         private const val KEY_ONLY_WEB_LOGIN = "onlyWebLogin"
         private const val KEY_BOT_PROMPT = "botPrompt"
+        private const val KEY_TOKEN_NONCE = "tokenNonce"
 
         private const val REQUEST_CODE_LOGIN: Int = 1234
         private const val TAG: String = "LineSdkWrapperActivity"
@@ -107,7 +112,8 @@ class LineSdkWrapperActivity : Activity() {
             channelId: String,
             scope: String,
             onlyWebLogin: Boolean,
-            botPrompt: String
+            botPrompt: String,
+            tokenNonce: String?
         ) {
             val intent = Intent(activity, LineSdkWrapperActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -116,6 +122,7 @@ class LineSdkWrapperActivity : Activity() {
                 putExtra(KEY_SCOPE, scope)
                 putExtra(KEY_ONLY_WEB_LOGIN, onlyWebLogin)
                 putExtra(KEY_BOT_PROMPT, botPrompt)
+                putExtra(KEY_TOKEN_NONCE, tokenNonce)
             }
             activity.startActivityForResult(intent,
                 REQUEST_CODE_LOGIN

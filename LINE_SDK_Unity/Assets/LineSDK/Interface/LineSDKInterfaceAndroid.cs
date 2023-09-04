@@ -46,19 +46,21 @@ namespace Line.LineSDK
             lineSdkWrapper.Call("setupSdk", parameters);
         }
 
-        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string identifier)
+        internal static void Login(string scope, bool onlyWebLogin, string botPrompt, string tokenNonce, string identifier)
         {
             if (!Application.isPlaying) { return; }
             if (IsInvalidRuntime(null)) { return; }
 
-            object[] parameters = new object[4];
+            object[] parameters = new object[5];
             parameters[0] = identifier;
             parameters[1] = scope;
             parameters[2] = onlyWebLogin;
             parameters[3] = botPrompt;
+            parameters[4] = tokenNonce;
 
             lineSdkWrapper.Call("login", parameters);
         }
+
 
         internal static void Logout(string identifier)
         {
