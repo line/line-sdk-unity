@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.3.0
+
+### Added
+
+* Add a way to set `IDTokenNonce` in `LoginOption`. This allows you to implement your customize nonce verification against your server. [#57](https://github.com/line/line-sdk-unity/pull/57)
+
+### Fixed
+
+* Fix a build issue. Now this package supports starting from Unity 2020.3.15, since any older version of Unity was shipping with an incompatible version of Gradle. [#54](https://github.com/line/line-sdk-unity/pull/54), [#55](https://github.com/line/line-sdk-unity/pull/55)
+* Some terminology that is used in API references for legal purposes.
+
 ## 1.2.2
 
 ### Fixed
