@@ -32,11 +32,11 @@ namespace Line.LineSDK {
         public bool OnlyWebLogin { get; set; }
 
         /// <summary>
-        /// Strategy used to show "adding bot as friend" option on the consent screen.
+        /// Strategy used to show "adding the LINE Official Account as friend" option on the consent screen.
         /// </summary>
         /// <value>
-        /// - "normal": Includes an option to add a bot as friend on the consent screen.
-        /// - "aggressive": Opens a new screen to add a bot as a friend after the user agrees to the permissions on the consent screen.
+        /// - "normal": Includes an option to add a LINE Official Account as friend on the consent screen.
+        /// - "aggressive": Opens a new screen to add a LINE Official Account as a friend after the user agrees to the permissions on the consent screen.
         /// </value>
         public string BotPrompt { get; set; }
 
