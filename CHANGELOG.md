@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.3.1
+
+### Fixed
+
+* Update license holder name in all source code files. Now LY Corporation is the license holder of LINE SDK Swift. The license content and terms itself is not changed so you can still use the SDK under the same condition as before. [#59](https://github.com/line/line-sdk-unity/pull/59)
+* Increase the minimum deploy version to iOS 13.0 and Android API Level 24 (Android 7.0) to match modern development requirements.
+
 ## 1.3.0
 
 ### Added
