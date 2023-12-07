@@ -66,6 +66,9 @@ void line_sdk_login(const char* scope, bool onlyWebLogin, const char* botPrompt,
     NSString *nsScope = LineSDKMakeNSString(scope);
     NSString *nsBotPrompt = LineSDKMakeNSString(botPrompt);
     NSString *nsTokenNonce = LineSDKMakeNSString(tokenNonce);
+    if ([nsTokenNonce isEqualToString:@""]) {
+        nsTokenNonce = nil;
+    }
     NSString *nsIdentifier = LineSDKMakeNSString(identifier);
 
     [[LineSDKWrapper sharedInstance] 
