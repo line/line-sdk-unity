@@ -15,9 +15,7 @@ data class AccessTokenForUnity(
 ) {
     companion object {
         fun convertFromLineLoginResult(loginResult: LineLoginResult): AccessTokenForUnity? {
-            val lineIdTokenString = loginResult.lineIdToken?.let {
-                Gson().toJson(it)
-            } ?: ""
+            val lineIdTokenString = loginResult.lineIdToken?.rawString ?: ""
             val accessToken = loginResult.lineCredential?.accessToken ?: return null
             return AccessTokenForUnity(
                 accessToken.tokenString,
