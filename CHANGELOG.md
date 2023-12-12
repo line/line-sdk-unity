@@ -1,10 +1,17 @@
 # Change Log
 
+## 1.3.2
+
+### Fixed
+
+* Fix an issue that the ID Token verification on iOS fails if `openid` scope is declared in the login process but the nonce is not set. [#63](https://github.com/line/line-sdk-unity/pull/63)
+* Now the `AccessToken.IdTokenRaw` returns the correct raw ID token string on Android. Previously it returns a JSON string that contains the parsed ID token values. The new behavior is now consistent with iOS. [#64](https://github.com/line/line-sdk-unity/pull/64)
+
 ## 1.3.1
 
 ### Fixed
 
-* Update license holder name in all source code files. Now LY Corporation is the license holder of LINE SDK Swift. The license content and terms itself is not changed so you can still use the SDK under the same condition as before. [#59](https://github.com/line/line-sdk-unity/pull/59)
+* Update the license holder's name in all source code files. Now LY Corporation is the license holder of LINE SDK Swift. The license content and terms itself is not changed so you can still use the SDK under the same condition as before. [#59](https://github.com/line/line-sdk-unity/pull/59)
 * Increase the minimum deploy version to iOS 13.0 and Android API Level 24 (Android 7.0) to match modern development requirements.
 
 ## 1.3.0
@@ -22,7 +29,7 @@
 
 ### Fixed
 
-* Upgrade the Android native package dependency version and the repo. This fixes a build issue of using deprecated repo for Android. [#51](https://github.com/line/line-sdk-unity/issues/51)
+* Upgrade the Android native package dependency version and the repo. This fixes a build issue of using a deprecated repo for Android. [#51](https://github.com/line/line-sdk-unity/issues/51)
 
 ## 1.2.1
 
