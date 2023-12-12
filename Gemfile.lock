@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    colorize (0.8.1)
-    rake (13.0.1)
+    colorize (1.1.0)
+    rake (13.1.0)
 
 PLATFORMS
   ruby
