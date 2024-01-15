@@ -5,3 +5,5 @@
 **/LineSDKObjC.xcframework/**/*.swiftdoc filter=lfs diff=lfs merge=lfs -text
 **/LineSDKObjC.xcframework/**/*.swiftinterface filter=lfs diff=lfs merge=lfs -text
 **/LineSDKObjC.xcframework/**/LineSDKObjC.framework/_CodeSignature/CodeResources filter=lfs diff=lfs merge=lfs -text
+LINE_SDK_Unity/Assets/Plugins/iOS/LineSDK/vendor/LineSDKObjC.xcframework/**/*.abi.json filter=lfs diff=lfs merge=lfs -text
+LINE_SDK_Unity/Assets/Plugins/iOS/LineSDK/vendor/LineSDKObjC.xcframework/_CodeSignature/* filter=lfs diff=lfs merge=lfs -text

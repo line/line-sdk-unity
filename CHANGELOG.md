@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.3
+
+### Fixed
+
+* Upgrade the native LINE iOS SDK for Swift, in which the Privacy Manifest is contained. So LINE SDK for Unity also supports Privacy Manifest. [#66](https://github.com/line/line-sdk-unity/pull/66)
+
 ## 1.3.2
 
 ### Fixed
