@@ -42,9 +42,13 @@ namespace Line.LineSDK {
                 instance = this;
             } else if (instance != this) {
                 Destroy(gameObject);
+                return;
             }
             DontDestroyOnLoad(gameObject);
-            SetupSDK();
+
+            if (!string.IsNullOrEmpty(channelID)) { 
+                SetupSDK();
+            }
         }
 
         /// <summary>
@@ -64,9 +68,23 @@ namespace Line.LineSDK {
             }
         }
 
-        void SetupSDK() {
+        /// <summary>
+        /// Initializes the native side of the SDK with the specified `channelID` in the prefab. This is only necessary
+        /// when you cannot determine and set the `channelID` in the Unity Editor at compiling time.
+        ///
+        /// This method should be invoked only once per app session. If the `channelID` is already provided in the
+        /// prefab,  `SetupSDK` is automatically triggered during the `Awake` method, eliminating the need for manual
+        /// invocation.  However, if you need to assign different `channelID`s programmatically (for instance, in
+        /// varied environments like development or production), you can leave the `channelID` field empty in the
+        /// prefab, assign it in the code, and then call this method to finalize the SDK setup.
+        /// </summary>
+        /// <exception cref="Exception">
+        /// If the `channelID` is null or empty when this method is invoked, it will throw an exception. Ensure
+        /// the `channelID` is properly assigned before calling this method.
+        /// </exception>
+        public void SetupSDK() {
             if (string.IsNullOrEmpty(channelID)) {
-                throw new System.Exception("LINE SDK channel ID is not set.");
+                throw new Exception("LINE SDK channel ID is not set.");
             }
             NativeInterface.SetupSDK(channelID, universalLinkURL);
         }
