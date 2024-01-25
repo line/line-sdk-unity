@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.4.0
+
+### Added
+
+* Mark the `LineSDK.SetupSDK` method as public. This adds a way to set the channel ID manually after the instance `Awake`. [#68](https://github.com/line/line-sdk-unity/pull/68)
+
 ## 1.3.3
 
 ### Fixed
