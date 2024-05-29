@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.4.1
+
+### Fixed
+
+* Upgrade the xcframework to the latest version 5.11.1. This fixes an Apple review issue that does not allow binary containing the bitcode. [#71](https://github.com/line/line-sdk-unity/pull/71)
+* Fix an issue that the xcframework is duplicated when exporting on modern Unity versions. [#69](https://github.com/line/line-sdk-unity/issues/69)
+
 ## 1.4.0
 
 ### Added
