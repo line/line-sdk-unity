@@ -24,7 +24,7 @@ The LINE SDK supports the OpenID Connect 1.0 specification. You can get ID token
 
 * iOS 13.0 or later as the deployment target.
 * Android `minSdkVersion` set to 24 or higher (Android 7.0 or later).
-* Unity 2020.3.15 or later.
+* Unity 2021.3.45 or later.
 
 To use the LINE SDK with your game, follow the steps below.
 
