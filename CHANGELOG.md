@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.5.0
+
+### Added
+
+* Upgrade the iOS native LINE SDK to version 5.13.0. This version includes the Swift Concurrency support and compatible with the latest SDKs. [#72](https://github.com/line/flutter_line_sdk/pull/72)
+* Increase the minimum Unity version to 2021.3.45f1. The old Unity versions are no longer compatible with the latest Xcode and Apple's requirements about SDKs.
+
+### Fixed
+
+* Improve the export process since we can use the newer Unity version. Now the export and library linking should be more stable and easier to use.
+
 ## 1.4.1
 
 ### Fixed
